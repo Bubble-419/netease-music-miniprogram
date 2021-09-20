@@ -1,0 +1,32 @@
+<!-- pages/search/search.wxml -->
+<!-- 搜索头部 -->
+<view class="header">
+  <van-search value="{{ value }}" placeholder="搜索音乐、视频、歌词" shape="round" background="#fff" show-action bind:search="onSearch" bind:cancel="onCancel" />
+</view>
+<!-- 搜索头部结束 -->
+<view class="container">
+  <!-- 历史搜索 -->
+  <view class="history">
+    <text class="title round-item">历史</text>
+    <scroll-view class="his-list" scroll-x="true">
+      <block wx:for="{{history}}">
+        <text class="round-item">{{item}}</text>
+      </block>
+    </scroll-view>
+    <!-- TODO清空历史按钮 -->
+  </view>
+  <!-- 历史搜索结束 -->
+  <!-- 热搜榜 -->
+  <view class="hot">
+    <text class="title round-item">热搜榜</text>
+    <view class="hot-list">
+      <block wx:for="{{hotList}}">
+        <view class="hot-item">
+          <text class="index">{{index+1}}</text>
+          <text class="name">{{item.first}}</text>
+        </view>
+      </block>
+    </view>
+  </view>
+  <!-- 热搜榜结束 -->
+</view>

@@ -1,0 +1,22 @@
+{
+  "name": "netease-music-miniprogram",
+  "version": "1.0.0",
+  "description": "仿网易云小程序",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bubble-419/netease-music-miniprogram.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Bubble-419/netease-music-miniprogram/issues"
+  },
+  "homepage": "https://github.com/Bubble-419/netease-music-miniprogram#readme",
+  "dependencies": {
+    "@vant/weapp": "^1.8.5"
+  }
+}

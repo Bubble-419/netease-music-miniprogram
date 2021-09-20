@@ -1,0 +1,106 @@
+.header {
+  background-color: #fff;
+  border-radius: 30rpx;
+  padding: 20rpx;
+}
+
+.banner {
+  height: 280rpx;
+  border-radius: 30rpx;
+  overflow: hidden;
+}
+
+swiper-item {
+  height: 100%;
+  border-radius: 30rpx;
+}
+
+.icons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 30rpx;
+}
+
+.icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10rpx;
+  font-size: 30rpx;
+  color: gray;
+}
+
+.icon-item image {
+  position: relative;
+  height: 80rpx;
+  width: 80rpx;
+  z-index: 100;
+}
+
+.icon-item image::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(221, 0, 27, .8);
+  height: 80rpx;
+  width: 80rpx;
+  border-radius: 50%;
+  z-index: -1;
+}
+
+.rec-list {
+  margin-top: 30rpx;
+  padding: 25rpx 35rpx;
+  background-color: #fff;
+  border-radius: 30rpx;
+}
+
+.rec-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.rec-header text {
+  font-weight: 700;
+  font-size: 38rpx;
+}
+
+.rec-list .list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  white-space: nowrap;
+  padding-top: 20rpx;
+}
+
+.list .list-item {
+  display: inline-block;
+  padding: 20rpx;
+  width: 220rpx;
+}
+
+.list-item .play-list-item {
+  display: flex;
+  flex-direction: column;
+  white-space: normal;
+}
+
+.list-item image {
+  width: 220rpx;
+  height: 220rpx;
+  border-radius: 30rpx;
+}
+
+.list-item text {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  font-size: 30rpx;
+  color: gray;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}

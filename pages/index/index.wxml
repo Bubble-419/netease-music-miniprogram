@@ -1,0 +1,50 @@
+<!-- page/index/index.wxml -->
+<!-- 搜索框区域 -->
+<view class="search">
+  <van-search value="{{ value }}" shape="round" background="#DD001B" placeholder="{{searchDefault}}" bind:tap="goSearch"/>
+</view>
+<!-- 搜索框区域结束 -->
+<!-- header区域，包括轮播图和圆形入口 -->
+<view class="header">
+  <!-- 轮播图 -->
+  <swiper class="banner" indicator-dots="true" indicator-color="rgba(0,0,0,.3)" indicator-active-color="#fff"
+    autoplay="true" current="0" current-item-id="" interval="3000" duration="500">
+    <block wx:for="{{banners}}" wx:key="{{item.targetId}}">
+      <swiper-item item-id="{{item.targetId}}">
+        <image class="banner-item" src="{{item.imageUrl}}" lazy-load="true" mode="widthFix"></image>
+      </swiper-item>
+    </block>
+  </swiper>
+  <!-- 轮播图结束 -->
+  <!-- 圆形入口列表 -->
+  <view class="icons">
+    <view class="icon" wx:for="{{homeIcons}}" wx:key="{{item.id}}">
+      <view class="icon-item">
+        <image src="{{item.iconUrl}}" mode="aspectFit"></image>
+      </view>
+      <text>{{item.name}}</text>
+    </view>
+  </view>
+  <!-- 圆形入口列表结束 -->
+</view>
+<!-- header区域结束 -->
+<!-- 推荐歌单 -->
+<view class="rec-list">
+  <!-- 推荐歌单标题+更多按钮 -->
+  <view class="rec-header">
+    <text>推荐歌单</text>
+    <van-button type="default" round hairline size="mini">更多</van-button>
+  </view>
+  <!-- 歌单列表 -->
+  <scroll-view class="list" scroll-x="true">
+    <block wx:for="{{playList}}" wx:key="item.id">
+      <view class="list-item">
+        <view class="play-list-item">
+          <image class="" src="{{item.picUrl}}" mode="aspectFill" lazy-load="false"></image>
+          <text class="">{{item.name}}</text>
+        </view>
+      </view>
+    </block>
+  </scroll-view>
+</view>
+<!-- 推荐歌单结束 -->

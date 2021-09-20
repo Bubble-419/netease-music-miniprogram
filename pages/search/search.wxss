@@ -1,0 +1,8 @@
+/* pages/search/search.wxss */
+page {
+  background-color: #fff;
+}
+
+.container {
+  padding: 20rpx;
+}

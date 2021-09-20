@@ -1,0 +1,37 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/center/center",
+    "pages/personalFM/personalFM",
+    "pages/search/search"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#DD001B",
+    "navigationBarTitleText": "发现音乐"
+  },
+  "tabBar": {
+    "backgroundColor": "#fff",
+    "color": "#8a8a8a",
+    "selectedColor": "#DD001B",
+    "list": [{
+        "pagePath": "pages/index/index",
+        "text": "发现音乐",
+        "iconPath": "assets/images/tab-discovery.png",
+        "selectedIconPath": "assets/images/tab-discovery-selected.png"
+      },
+      {
+        "pagePath": "pages/center/center",
+        "text": "个人中心",
+        "iconPath": "assets/images/tab-center.png",
+        "selectedIconPath": "assets/images/tab-center-selected.png"
+      },
+      {
+        "pagePath": "pages/personalFM/personalFM",
+        "text": "私人FM",
+        "iconPath": "assets/images/tab_FM.png",
+        "selectedIconPath": "assets/images/tab_FM-selected.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}
