@@ -4,14 +4,23 @@
   padding: 20rpx;
 }
 
-.banner {
+swiper {
   height: 280rpx;
   border-radius: 30rpx;
   overflow: hidden;
+  transform: translateY(0);
 }
 
-swiper-item {
+.banner-item {
   height: 100%;
+  overflow: hidden;
+  border-radius: 30rpx;
+  transform: translateY(0);
+}
+
+.banner-item image {
+  width: 100%;
+  overflow: hidden;
   border-radius: 30rpx;
 }
 
@@ -19,7 +28,7 @@ swiper-item {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin-top: 30rpx;
+  margin-top: 25rpx;
 }
 
 .icon {

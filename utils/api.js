@@ -37,7 +37,7 @@ module.exports = {
   },
   // 2. 热门搜索
   searchHot: (data) => {
-    return request("GET", "/search/hot", data);
+    return request("GET", "/search/hot/detail", data);
   },
   // 3. 搜索建议
   searchSuggest: (data) => {

@@ -1,17 +1,18 @@
 <!-- page/index/index.wxml -->
 <!-- 搜索框区域 -->
 <view class="search">
-  <van-search value="{{ value }}" shape="round" background="#DD001B" placeholder="{{searchDefault}}" bind:tap="goSearch"/>
+  <van-search value="{{ value }}" shape="round" background="#DD001B" placeholder="{{searchDefault}}" bind:tap="goSearch" />
 </view>
 <!-- 搜索框区域结束 -->
 <!-- header区域，包括轮播图和圆形入口 -->
 <view class="header">
   <!-- 轮播图 -->
-  <swiper class="banner" indicator-dots="true" indicator-color="rgba(0,0,0,.3)" indicator-active-color="#fff"
-    autoplay="true" current="0" current-item-id="" interval="3000" duration="500">
+  <swiper class="banner" indicator-dots="true" indicator-color="rgba(0,0,0,.3)" indicator-active-color="#fff" autoplay="true" current="0" current-item-id="" interval="3000" duration="500" circular="{{true}}">
     <block wx:for="{{banners}}" wx:key="{{item.targetId}}">
       <swiper-item item-id="{{item.targetId}}">
-        <image class="banner-item" src="{{item.imageUrl}}" lazy-load="true" mode="widthFix"></image>
+        <view class="banner-item">
+          <image src="{{item.imageUrl}}" lazy-load="true" mode="widthFix"></image>
+        </view>
       </swiper-item>
     </block>
   </swiper>
