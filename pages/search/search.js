@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    // 搜索值
+    // 搜索关键词
     value: "",
     // 历史记录
     history: [],
@@ -14,8 +14,6 @@ Page({
     hotList: [],
     // 是否展示搜索建议页
     showSuggest: false,
-    // 搜索建议列表
-    suggestList: [],
   },
 
   /**
@@ -35,11 +33,25 @@ Page({
   /**
    * 页面函数
    */
-  // 搜索
-  onSearch: function (e) {
+  // 监听子组件的搜索事件，把关键词传给搜索函数
+  onSearchHeader: function (e) {
+    this.onSearch(e.detail.value);
+  },
+  // 监听子组件的展示搜索建议界面
+  onShowSuggest: function (e) {
     this.setData({
-      value: typeof e.detail === "string" ? e.detail : e.target.dataset.keywords,
+      showSuggest: e.detail.showSuggest,
     })
+  },
+  // 父组件的搜索事件，把关键词传给搜索函数
+  onSearchEvent: function (e) {
+    this.onSearch(e.target.dataset.keywords);
+  },
+  // 搜索，传参是搜索关键词
+  onSearch: function (value) {
+    this.setData({
+      value: value
+    });
     // 存储搜索历史
     // 注意历史记录应该是一个需要去重的栈
     let history = wx.getStorageSync('history') || [];
@@ -66,22 +78,6 @@ Page({
     wx.removeStorageSync("history");;
   },
 
-  // 取消，返回首页
-  onCancel: function () {
-    wx.navigateBack({
-      delta: 1
-    });
-  },
-  // 搜索建议
-  onChange: function (e) {
-    this.setData({
-      value: e.detail,
-      showSuggest: true,
-    })
-    this.getSearchSuggest(e.detail);
-  },
-  // 历史搜索
-
   /**
    * API函数
    */
@@ -93,17 +89,6 @@ Page({
           hotList: res.data.data
         })
       }
-    })
-  },
-  // 搜索建议
-  getSearchSuggest: function (keywords) {
-    api.searchSuggest({
-      keywords: keywords,
-      type: 'mobile'
-    }).then(res => {
-      this.setData({
-        suggestList: res.data.result.allMatch,
-      })
     })
   },
 })

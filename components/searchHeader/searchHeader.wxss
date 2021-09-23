@@ -1,0 +1,11 @@
+.sug-item {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #F0F0F0;
+  padding: 20rpx 35rpx;
+  font-size: 32rpx;
+}
+
+.sug-icon {
+  margin-right: 15rpx;
+}

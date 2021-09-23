@@ -1,11 +1,6 @@
 <!-- pages/search/search.wxml -->
-<!-- 搜索头部 -->
-<view class="header">
-  <van-search value="{{ value }}" placeholder="搜索音乐、视频、歌词" shape="round" background="#fff" use-action-slot bind:search="onSearch" bind:change="onChange">
-    <view slot="action" bind:tap="onSearch" data-keywords="{{value}}">确认</view>
-  </van-search>
-</view>
-<!-- 搜索头部结束 -->
+<!-- 引入组件，搜索头部和搜索建议 -->
+<search-header bind:search="onSearchHeader" bind:showSuggest="onShowSuggest"></search-header>
 <view class="container" hidden="{{showSuggest}}">
   <!-- 历史搜索 -->
   <view class="history">
@@ -13,7 +8,9 @@
     <view class="his-list">
       <scroll-view scroll-x="true" enable-flex>
         <block wx:for="{{history}}">
-          <text class="his-item round-item" data-keywords="{{item}}" bind:tap="onSearch">{{item}}</text>
+          <text class="his-item round-item" data-keywords="{{item}}" bind:tap="onSearchEvent">
+            {{item}}
+          </text>
         </block>
       </scroll-view>
       <!-- 清空历史按钮 -->
@@ -30,7 +27,9 @@
         <view class="hot-item">
           <text class="index {{index<3?'top':''}}">{{index+1}}</text>
           <view class="label">
-            <text class="name" data-keywords="{{item.searchWord}}" bind:tap="onSearch">{{item.searchWord}}</text>
+            <text class="name" data-keywords="{{item.searchWord}}" bind:tap="onSearchEvent">
+              {{item.searchWord}}
+            </text>
             <image class="hot-icon" wx:if="{{item.iconUrl!=null}}" src="{{item.iconUrl}}" mode="aspectFit"></image>
           </view>
         </view>
@@ -38,13 +37,4 @@
     </view>
   </view>
   <!-- 热搜榜结束 -->
-</view>
-<!-- 搜索建议容器 -->
-<view class="container" hidden="{{!showSuggest}}">
-  <block wx:for="{{suggestList}}">
-    <view class="sug-item">
-      <van-icon name="search" class="sug-icon" size="15px"></van-icon>
-      <view bind:tap="onSearch" data-keywords="{{item.keyword}}">{{item.keyword}}</view>
-    </view>
-  </block>
 </view>

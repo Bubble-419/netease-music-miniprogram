@@ -1,0 +1,24 @@
+<!-- components/searchHeader/searchHeader.wxml -->
+
+<!-- 
+  子组件不负责搜索功能，而是把搜索关键字emit给父组件，由父组件完成搜索方法以及页面跳转。
+  子组件和父组件通信思路：
+  1. 绑定事件中调用triggerEvent，告知父组件自定义事件名以及传递数据
+  2. 父组件中监听自定义事件名，并通过detail对象获取数据
+ -->
+
+<!-- 搜索头部 -->
+<view class="header">
+  <van-search value="{{ value }}" placeholder="搜索音乐、视频、歌词" shape="round" background="#fff" use-action-slot bind:search="onEmitSearch" bind:change="onChange">
+    <view slot="action" bind:tap="onEmitSearch" data-keywords="{{value}}">确认</view>
+  </van-search>
+</view>
+<!-- 搜索建议容器 -->
+<view class="container" hidden="{{!showSuggest}}">
+  <block wx:for="{{suggestList}}">
+    <view class="sug-item">
+      <van-icon name="search" class="sug-icon" size="15px"></van-icon>
+      <view bind:tap="onEmitSearch" data-keywords="{{item.keyword}}">{{item.keyword}}</view>
+    </view>
+  </block>
+</view>

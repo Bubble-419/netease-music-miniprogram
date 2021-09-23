@@ -3,23 +3,10 @@ page {
   background-color: #fff;
 }
 
-.container {
-  padding: 10rpx 35rpx;
-}
-
-.round-item {
-  display: inline-block;
-  padding: 12rpx 28rpx;
-  border-radius: 40rpx;
-  color: #333;
-  font-size: 31rpx;
-  background-color: rgba(248,248,248, .8);
-}
-
 .title {
   font-weight: 700;
   margin: 0 20rpx 20rpx 0;
-  background-color: rgba(248,248,248, .4);
+  background-color: rgba(248, 248, 248, .4);
 }
 
 .history {
@@ -89,20 +76,4 @@ page {
   width: 55rpx;
   height: 35rpx;
   margin-left: 10rpx;
-}
-
-.sug-item {
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid #F0F0F0;
-  padding: 20rpx 35rpx;
-  font-size: 32rpx;
-}
-
-.sug-icon {
-  margin-right: 15rpx;
-}
-
-.none {
-  display: none;
 }
