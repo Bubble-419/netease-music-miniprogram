@@ -14,7 +14,7 @@
   </van-search>
 </view>
 <!-- 搜索建议容器 -->
-<view class="container" hidden="{{!showSuggest}}">
+<view class="container" hidden="{{showType!==2}}">
   <block wx:for="{{suggestList}}">
     <view class="sug-item">
       <van-icon name="search" class="sug-icon" size="15px"></van-icon>

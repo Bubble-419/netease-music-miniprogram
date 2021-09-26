@@ -2,11 +2,15 @@
 const api = require("../../utils/api")
 
 Component({
+  properties: {
+    // 是否展示搜索建议页
+    showType: {
+      type: Number,
+    }
+  },
   data: {
     // 搜索值
     value: "",
-    // 是否展示搜索建议页
-    showSuggest: false,
     // 搜索建议列表
     suggestList: [],
   },
@@ -27,11 +31,10 @@ Component({
     onChange: function (e) {
       this.setData({
         value: e.detail,
-        showSuggest: true,
       })
       this.getSearchSuggest(e.detail);
       this.triggerEvent('showSuggest', {
-        showSuggest: this.data.showSuggest,
+        showType: 2,
       })
     },
     /**

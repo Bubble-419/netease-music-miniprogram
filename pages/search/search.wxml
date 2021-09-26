@@ -1,7 +1,9 @@
 <!-- pages/search/search.wxml -->
 <!-- 引入组件，搜索头部和搜索建议 -->
-<search-header bind:search="onSearchHeader" bind:showSuggest="onShowSuggest"></search-header>
-<view class="container" hidden="{{showSuggest}}">
+<search-header bind:search="onSearchHeader" bind:showSuggest="onShowSuggest" showType="{{showType}}"></search-header>
+<!-- 头部和建议部分结束 -->
+<!-- 历史搜索和热搜榜部分 -->
+<view class="container" hidden="{{showType!==1}}">
   <!-- 历史搜索 -->
   <view class="history">
     <text class="title round-item">历史</text>
@@ -27,7 +29,7 @@
         <view class="hot-item">
           <text class="index {{index<3?'top':''}}">{{index+1}}</text>
           <view class="label">
-            <text class="name" data-keywords="{{item.searchWord}}" bind:tap="onSearchEvent">
+            <text class="name elli" data-keywords="{{item.searchWord}}" bind:tap="onSearchEvent">
               {{item.searchWord}}
             </text>
             <image class="hot-icon" wx:if="{{item.iconUrl!=null}}" src="{{item.iconUrl}}" mode="aspectFit"></image>
@@ -38,3 +40,40 @@
   </view>
   <!-- 热搜榜结束 -->
 </view>
+<!-- 历史搜索和热搜榜部分结束 -->
+<!-- 搜索结果部分 -->
+<view class="container" wx:if="{{showType===3}}">
+  <van-tabs sticky color="#DD001B" swipeable lazy-render active="{{tabsActive}}">
+    <van-tab name="1018" title="综合">
+      <!-- 这里没有选择把综合展示的每一个盒子封装成一个独立的组件，是因为考虑到每个盒子要使用的item组件不同，如果使用抽象节点的话，props会过于复杂，因此放弃 -->
+      <!-- 综合：单曲 -->
+      <view class="res-container">
+        <text class="res-header">单曲</text>
+        <block wx:for="{{song.songs}}">
+          <song-item songItem="{{item}}"></song-item>
+        </block>
+        <view class="more-info" bind:tap="moreSongs">
+          <text>{{song.moreText}}</text>
+        </view>
+      </view>
+      <!-- 综合：歌单 -->
+      <view class="res-container">
+        <text class="res-header">歌单</text>
+        <block wx:for="{{playList.playLists}}">
+          <play-list-item coverUrl="{{item.coverImgUrl}}" titleInfo="{{item.name}}" extra="{{item.trackCount}} songs by {{item.creator.nickname}}" tags="{{item.officialTags}}"></play-list-item>
+        </block>
+        <view class="more-info" bind:tap="morePlayLists">
+          <text>{{playList.moreText}}</text>
+        </view>
+      </view>
+      <!-- 综合：专辑 -->
+      <view class="res-container"></view>
+    </van-tab>
+    <van-tab name="1" title="单曲"></van-tab>
+    <van-tab name="1000" title="歌单"></van-tab>
+    <van-tab name="100" title="歌手"></van-tab>
+    <van-tab name="10" title="专辑"></van-tab>
+    <van-tab name="1002" title="用户"></van-tab>
+  </van-tabs>
+</view>
+<!-- 搜索结果部分结束 -->

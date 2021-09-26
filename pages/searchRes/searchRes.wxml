@@ -1,2 +1,2 @@
 <!--pages/searchRes/searchRes.wxml-->
-<text>pages/searchRes/searchRes.wxml</text>
+<search-header></search-header>

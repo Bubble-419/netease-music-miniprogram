@@ -2,7 +2,11 @@
   "usingComponents": {
     "van-search": "@vant/weapp/search/index",
     "van-icon": "@vant/weapp/icon/index",
-    "search-header":"/components/searchHeader/searchHeader"
+    "van-tab": "@vant/weapp/tab/index",
+    "van-tabs": "@vant/weapp/tabs/index",
+    "search-header": "/components/searchHeader/searchHeader",
+    "song-item": "/components/songItem/songItem",
+    "play-list-item": "/components/playListItem/playListItem"
   },
   "navigationBarTitleText": "搜索"
 }

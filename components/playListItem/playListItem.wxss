@@ -1,0 +1,25 @@
+.play-list-item {
+  display: flex;
+  align-items: center;
+  font-size: 32rpx;
+  padding: 22rpx;
+}
+
+.cover {
+  width: 100rpx;
+  border-radius: 20rpx;
+}
+
+.item-info {
+  display: flex;
+  flex-direction: column;
+  padding: 0 20rpx;
+}
+
+.tags {
+  display: inline-block;
+  margin: 0 20rpx;
+  font-size: 25rpx;
+  color: gray;
+  padding: 0;
+}

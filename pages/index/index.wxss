@@ -105,11 +105,6 @@ swiper {
 }
 
 .list-item text {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
   font-size: 30rpx;
   color: gray;
-  text-overflow: ellipsis;
-  overflow: hidden;
 }

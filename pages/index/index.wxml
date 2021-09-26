@@ -42,7 +42,7 @@
       <view class="list-item">
         <view class="play-list-item">
           <image class="" src="{{item.picUrl}}" mode="aspectFill" lazy-load="false"></image>
-          <text class="">{{item.name}}</text>
+          <text class="multi-elli">{{item.name}}</text>
         </view>
       </view>
     </block>

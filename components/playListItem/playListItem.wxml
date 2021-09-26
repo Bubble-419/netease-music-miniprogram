@@ -1,0 +1,16 @@
+<!-- 一个专辑和歌单通用的组件 -->
+<view class="play-list-item container" bind:tap="onClick">
+  <!-- 封面 -->
+  <image class="cover" src="{{coverUrl}}" mode="widthFix"></image>
+  <view class="item-info">
+    <!-- 标题 -->
+    <text class="elli">{{titleInfo}}</text>
+    <!-- 附加信息 -->
+    <text class="extra elli">{{extra}}</text>
+    <view>
+      <block wx:if="{{tags!=[]}}" wx:for="{{tags}}">
+        <text class="tags round-item">{{item}}</text>
+      </block>
+    </view>
+  </view>
+</view>

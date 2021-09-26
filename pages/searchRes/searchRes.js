@@ -8,7 +8,9 @@ Page({
    */
   data: {
     // 搜索关键字
-    value:"",
+    value: "",
+    // 是否展示搜索建议页
+    showSuggest: false,
   },
 
   /**

@@ -12,8 +12,21 @@ Page({
     history: [],
     // 热搜榜
     hotList: [],
-    // 是否展示搜索建议页
-    showSuggest: false,
+    // 决定展示哪个容器
+    // type值为1：历史和热搜榜，2：搜索建议，3：搜索结果
+    showType: 1,
+    // 综合页的单曲
+    song: {},
+    // 综合页歌单
+    playList: {},
+    // 综合页歌手
+    singer: {},
+    // 综合页专辑
+    album: {},
+    // 综合页用户
+    user: {},
+    // 标签页切换变量
+    tabsActive: ""
   },
 
   /**
@@ -22,6 +35,9 @@ Page({
   // 监听页面加载
   onLoad: function (options) {
     this.setHotList();
+    this.setData({
+      tabsActive: "1018"
+    })
   },
   // 监听页面展示
   onShow: function (options) {
@@ -40,7 +56,13 @@ Page({
   // 监听子组件的展示搜索建议界面
   onShowSuggest: function (e) {
     this.setData({
-      showSuggest: e.detail.showSuggest,
+      showType: e.detail.showType,
+    })
+  },
+  // 监听子组件的切换标签事件
+  switchTabs: function (e) {
+    this.setData({
+      tabsActive: e.detail.targetTab,
     })
   },
   // 父组件的搜索事件，把关键词传给搜索函数
@@ -59,14 +81,9 @@ Page({
     history = Array.from(new Set(history));
     wx.setStorageSync("history", history);
     // 跳往搜索展示页
-    wx.navigateTo({
-      url: '../searchRes/searchRes',
-      success: (result) => {
-        // 通过eventChannel的emit方法向路由页面发送数据
-        result.eventChannel.emit("searchValue", {
-          value: this.data.value
-        });
-      },
+    this.setAllRes();
+    this.setData({
+      showType: 3
     });
   },
 
@@ -76,6 +93,10 @@ Page({
       history: []
     })
     wx.removeStorageSync("history");;
+  },
+  // 综合跳往单曲
+  moreSongs: function () {
+    // TODO
   },
 
   /**
@@ -91,4 +112,21 @@ Page({
       }
     })
   },
+  // 搜索结果
+  setAllRes: function () {
+    api.search({
+      keywords: this.data.value,
+      type: 1018
+    }).then(res => {
+      if (res.data.code === 200) {
+        this.setData({
+          song: res.data.result.song,
+          playList: res.data.result.playList,
+          singer: res.data.result.singer,
+          album: res.data.result.album,
+          user: res.data.result.user,
+        })
+      }
+    })
+  }
 })
