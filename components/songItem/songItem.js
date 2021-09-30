@@ -1,13 +1,18 @@
 //Component Object
 Component({
   properties: {
-    songItem: {
+    name: {
+      type: String,
+      value: "",
+    },
+    artists: {
+      type: Array,
+      value: [],
+    },
+    album: {
       type: Object,
       value: {},
     },
-  },
-  data: {
-
   },
   methods: {
     playSong: function () {

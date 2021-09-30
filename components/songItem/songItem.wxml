@@ -7,15 +7,15 @@
   <!-- 歌曲信息 -->
   <view class="song-info">
     <!-- 歌曲名 -->
-    <text class="elli">{{songItem.name}}</text>
+    <text class="elli">{{name}}</text>
     <view class="extra">
       <!-- 歌手名 -->
-      <block wx:for="{{songItem.ar}}">
+      <block wx:for="{{artists}}">
         <text>{{item.name}}</text>
-        <text wx:if="{{index<(songItem.ar.length-1)}}">/</text>
+        <text wx:if="{{index<(artists.length-1)}}">/</text>
       </block>
       <!-- 专辑名 -->
-      <text class="elli" wx:if="{{songItem.al.name!=''}}"> - {{songItem.al.name}}</text>
+      <text class="elli" wx:if="{{album.name!=''}}"> - {{album.name}}</text>
     </view>
   </view>
 </view>

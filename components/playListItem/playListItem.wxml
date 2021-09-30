@@ -1,10 +1,13 @@
-<!-- 一个专辑和歌单通用的组件 -->
+<!-- 一个歌单专辑用户都通用的组件 -->
 <view class="play-list-item container" bind:tap="onClick">
-  <!-- 封面 -->
-  <image class="cover" src="{{coverUrl}}" mode="widthFix"></image>
+  <!-- 封面/头像 -->
+  <image class="cover {{user?'round':''}}" src="{{coverUrl}}" mode="widthFix"></image>
   <view class="item-info">
-    <!-- 标题 -->
-    <text class="elli">{{titleInfo}}</text>
+    <!-- 标题/名字 -->
+    <view class="title-info elli">
+      <text>{{titleInfo}}</text>
+      <text class="alias" wx:if="{{alias}}">({{alias}})</text>
+    </view>
     <!-- 附加信息 -->
     <text class="extra elli">{{extra}}</text>
     <view>
@@ -13,4 +16,6 @@
       </block>
     </view>
   </view>
+  <!-- 关注按钮 -->
+  <van-button type="default" round hairline size="mini" class="{{followed?'followed':''}}"  wx:if="{{user}}">{{followed?' √ 已关注':' + 关注'}}</van-button>
 </view>

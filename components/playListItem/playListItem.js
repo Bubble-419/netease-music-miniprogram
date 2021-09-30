@@ -12,6 +12,11 @@ Component({
       type: String,
       value: "",
     },
+    // 别名（专辑）
+    alias: {
+      type: String,
+      value: "",
+    },
     // 附加信息
     extra: {
       type: String,
@@ -19,6 +24,16 @@ Component({
     },
     // 标签组
     tags: [],
+    // 是否为用户
+    user: {
+      type: Boolean,
+      value: false
+    },
+    followed: {
+      type: Boolean,
+      value: false
+    }
+    // 
     // 点击后要跳转的页面,以及路由参数
     // TODO
   },

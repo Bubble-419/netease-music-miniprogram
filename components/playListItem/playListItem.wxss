@@ -6,7 +6,7 @@
 }
 
 .cover {
-  width: 100rpx;
+  flex: 0 0 100rpx;
   border-radius: 20rpx;
 }
 
@@ -14,6 +14,8 @@
   display: flex;
   flex-direction: column;
   padding: 0 20rpx;
+  overflow: hidden;
+  flex: 1;
 }
 
 .tags {
@@ -22,4 +24,12 @@
   font-size: 25rpx;
   color: gray;
   padding: 0;
+}
+
+.alias {
+  color: gray;
+}
+
+.round {
+  border-radius: 100%;
 }

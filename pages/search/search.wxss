@@ -70,9 +70,10 @@ page {
 }
 
 .hot-icon {
-  width: 55rpx;
+  /* width: 55rpx; */
   height: 35rpx;
   margin-left: 10rpx;
+  flex: 0 0 55rpx;
 }
 
 .res-container {
@@ -82,6 +83,12 @@ page {
   padding: 20rpx;
   border: 1px solid rgba(211, 211, 211, .6);
   border-radius: 40rpx;
+}
+
+.all-container {
+  display: flex;
+  flex-direction: column;
+  padding: 20rpx;
 }
 
 .res-header {
@@ -98,4 +105,13 @@ page {
   font-size: 30rpx;
   padding: 35rpx 0;
   border-top: 1px solid rgba(211, 211, 211, .6);
+}
+
+.sim-query {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.sim-query text {
+  margin: 8rpx;
 }

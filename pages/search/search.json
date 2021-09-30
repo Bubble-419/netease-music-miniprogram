@@ -6,7 +6,8 @@
     "van-tabs": "@vant/weapp/tabs/index",
     "search-header": "/components/searchHeader/searchHeader",
     "song-item": "/components/songItem/songItem",
-    "play-list-item": "/components/playListItem/playListItem"
+    "play-list-item": "/components/playListItem/playListItem",
+    "loading": "/components/loading/loading"
   },
   "navigationBarTitleText": "搜索"
 }

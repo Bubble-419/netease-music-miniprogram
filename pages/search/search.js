@@ -1,5 +1,6 @@
 // pages/search/search.js
 const api = require("../../utils/api");
+const util = require("../../utils/util");
 Page({
 
   /**
@@ -20,13 +21,29 @@ Page({
     // 综合页歌单
     playList: {},
     // 综合页歌手
-    singer: {},
+    artist: {},
     // 综合页专辑
     album: {},
     // 综合页用户
     user: {},
+    // 综合页相关搜索
+    simQuery: [],
     // 标签页切换变量
-    tabsActive: ""
+    tabsActive: "",
+    // 加载flag
+    isLoading: false,
+    // 分页
+    offset: 1,
+    // 单曲页
+    allSongs: [],
+    // 歌单页
+    allPlayLists: [],
+    // 专辑页
+    allAlbums: [],
+    // 歌手页
+    allArtists: [],
+    // 用户页
+    allUsers: [],
   },
 
   /**
@@ -59,12 +76,6 @@ Page({
       showType: e.detail.showType,
     })
   },
-  // 监听子组件的切换标签事件
-  switchTabs: function (e) {
-    this.setData({
-      tabsActive: e.detail.targetTab,
-    })
-  },
   // 父组件的搜索事件，把关键词传给搜索函数
   onSearchEvent: function (e) {
     this.onSearch(e.target.dataset.keywords);
@@ -94,11 +105,91 @@ Page({
     })
     wx.removeStorageSync("history");;
   },
-  // 综合跳往单曲
-  moreSongs: function () {
-    // TODO
-  },
+  // 标签切换
+  switchTab: function (e) {
+    const tab = e.detail.name;
+    this.setData({
+      offset: 1
+    })
+    switch (tab) {
+      case "1":
+        this.setSinglePage({
+          type: "1",
+          offset: this.data.offset
+        });
+        break;
+      case "1000":
+        this.setSinglePage({
+          type: "1000",
+          offset: this.data.offset
+        });
+        break;
+      case "100":
+        this.setSinglePage({
+          type: "100",
+          offset: this.data.offset
+        });
+        break;
+      case "10":
+        this.setSinglePage({
+          type: "10",
+          offset: this.data.offset
+        });
+        break;
+      case "1002":
+        this.setSinglePage({
+          type: "1002",
+          offset: this.data.offset
+        });
+        break;
+    }
 
+  },
+  // 查看更多
+  goToMore: function (e) {
+    this.setData({
+      tabsActive: e.currentTarget.dataset.tab,
+    })
+  },
+  // 触底加载更多
+  onReachBottom: function () {
+    this.setData({
+      isLoading: true,
+      offset: this.data.offset + 1,
+    });
+    switch (this.data.tabsActive) {
+      case "1":
+        this.setSinglePage({
+          type: "1",
+          offset: this.data.offset
+        });
+        break;
+      case "1000":
+        this.setSinglePage({
+          type: "1000",
+          offset: this.data.offset
+        });
+        break;
+      case "100":
+        this.setSinglePage({
+          type: "100",
+          offset: this.data.offset
+        });
+        break;
+      case "10":
+        this.setSinglePage({
+          type: "10",
+          offset: this.data.offset
+        });
+        break;
+      case "1002":
+        this.setSinglePage({
+          type: "1002",
+          offset: this.data.offset
+        });
+        break;
+    }
+  },
   /**
    * API函数
    */
@@ -112,21 +203,68 @@ Page({
       }
     })
   },
-  // 搜索结果
+  // 综合搜索结果
   setAllRes: function () {
     api.search({
       keywords: this.data.value,
       type: 1018
     }).then(res => {
       if (res.data.code === 200) {
+        let al = res.data.result.album;
+        for (let a of al.albums) {
+          a.publishTime = util.getPublishTime(a.publishTime);
+        }
         this.setData({
           song: res.data.result.song,
           playList: res.data.result.playList,
-          singer: res.data.result.singer,
-          album: res.data.result.album,
+          artist: res.data.result.artist,
+          album: al,
           user: res.data.result.user,
-        })
+          simQuery: res.data.result.sim_query.sim_querys,
+        });
       }
     })
-  }
+  },
+  // 设置非综合页的结果
+  setSinglePage: function (payload) {
+    api.search({
+      keywords: this.data.value,
+      type: payload.type,
+      offset: payload.offset
+    }).then(res => {
+      if (res.data.code === 200) {
+        switch (payload.type) {
+          case "1":
+            this.setData({
+              allSongs: this.data.allSongs.concat(res.data.result.songs),
+            })
+            break;
+          case "1000":
+            this.setData({
+              allPlayLists: this.data.allPlayLists.concat(res.data.result.playlists),
+            })
+            break;
+          case "100":
+            this.setData({
+              allArtists: this.data.allArtists.concat(res.data.result.artists),
+            })
+            break;
+          case "10":
+            let al = res.data.result.albums;
+            for (let a of al) {
+              a.publishTime = util.getPublishTime(a.publishTime);
+            }
+            this.setData({
+              allAlbums: this.data.allAlbums.concat(al),
+            })
+            break;
+          case "1002":
+            this.setData({
+              allUsers: this.data.allUsers.concat(res.data.result.userprofiles),
+            })
+            break;
+        }
+      }
+    })
+  },
 })

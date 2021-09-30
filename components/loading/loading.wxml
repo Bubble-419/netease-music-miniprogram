@@ -1,0 +1,3 @@
+<view class="loading" wx:if="{{isLoading}}">
+  <text>Loading...</text>
+</view>
