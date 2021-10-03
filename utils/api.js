@@ -58,5 +58,9 @@ module.exports = {
   // 推荐歌单
   getHomePlaylist: (data) => {
     return request("GET", "/personalized", data);
+  },
+  // 歌单详情
+  getPlaylistDetail: (data) => {
+    return request("GET", "/playlist/detail", data)
   }
 }

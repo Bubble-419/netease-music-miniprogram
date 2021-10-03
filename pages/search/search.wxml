@@ -39,14 +39,14 @@
 <!-- 历史搜索和热搜榜部分结束 -->
 <!-- 搜索结果部分 -->
 <view class="container" wx:if="{{showType===3}}">
-  <van-tabs sticky color="#DD001B" swipeable lazy-render active="{{tabsActive}}"  bind:change="switchTab">
+  <van-tabs sticky color="#DD001B" swipeable lazy-render active="{{tabsActive}}" bind:change="onChangeTab">
     <van-tab name="1018" title="综合">
       <!-- 这里没有选择把综合展示的每一个盒子封装成一个独立的组件，是因为考虑到每个盒子要使用的item组件不同，如果使用抽象节点的话，props会过于复杂，因此放弃 -->
       <!-- 综合：单曲 -->
       <view class="res-container">
         <text class="res-header">单曲</text>
         <block wx:for="{{song.songs}}">
-          <song-item name="{{item.name}}" artists="{{item.ar}}" album="{{item.al}}" ></song-item>
+          <song-item itemId="{{item.id}}" name="{{item.name}}" artists="{{item.ar}}" album="{{item.al}}"></song-item>
         </block>
         <view class="more-info" data-tab="1" bind:tap="goToMore">
           <text>{{song.moreText}}</text>
@@ -56,7 +56,7 @@
       <view class="res-container">
         <text class="res-header">歌单</text>
         <block wx:for="{{playList.playLists}}">
-          <play-list-item coverUrl="{{item.coverImgUrl}}" titleInfo="{{item.name}}" extra="{{item.trackCount}} songs by {{item.creator.nickname}}" tags="{{item.officialTags}}"></play-list-item>
+          <play-list-item itemId="{{item.id}}" coverUrl="{{item.coverImgUrl}}" titleInfo="{{item.name}}" extra="{{item.trackCount}} songs by {{item.creator.nickname}}" tags="{{item.officialTags}}"></play-list-item>
         </block>
         <view class="more-info" data-tab="1000" bind:tap="goToMore">
           <text>{{playList.moreText}}</text>
@@ -66,7 +66,7 @@
       <view class="res-container">
         <text class="res-header">专辑</text>
         <block wx:for="{{album.albums}}">
-          <play-list-item coverUrl="{{item.picUrl}}" titleInfo="{{item.name}}" alias="{{item.alias[0]}}" extra="{{item.artist.name}} {{item.publishTime}}"></play-list-item>
+          <play-list-item itemId="{{item.id}}" coverUrl="{{item.picUrl}}" titleInfo="{{item.name}}" alias="{{item.alias[0]}}" extra="{{item.artist.name}} {{item.publishTime}}"></play-list-item>
         </block>
         <view class="more-info" data-tab="10" bind:tap="goToMore">
           <text>{{album.moreText}}</text>
@@ -76,7 +76,7 @@
       <view class="res-container">
         <text class="res-header">歌手</text>
         <block wx:for="{{artist.artists}}">
-          <play-list-item user="{{true}}" coverUrl="{{item.picUrl}}" titleInfo="{{item.name}}" alias="{{item.alias[0]}}" followed="{{item.followed}}"></play-list-item>
+          <play-list-item itemId="{{item.id}}" user="{{true}}" coverUrl="{{item.picUrl}}" titleInfo="{{item.name}}" alias="{{item.alias[0]}}" followed="{{item.followed}}"></play-list-item>
         </block>
         <view class="more-info" data-tab="100" bind:tap="goToMore">
           <text>{{artist.moreText}}</text>
@@ -95,7 +95,7 @@
       <view class="res-container">
         <text class="res-header">用户</text>
         <block wx:for="{{user.users}}">
-          <play-list-item user="{{true}}" coverUrl="{{item.avatarUrl}}" titleInfo="{{item.nickname}}" extra="{{item.signature}}" followed="{{item.followed}}"></play-list-item>
+          <play-list-item itemId="{{item.id}}" user="{{true}}" coverUrl="{{item.avatarUrl}}" titleInfo="{{item.nickname}}" extra="{{item.signature}}" followed="{{item.followed}}"></play-list-item>
         </block>
         <view class="more-info" data-tab="1002" bind:tap="goToMore">
           <text>{{user.moreText}}</text>
@@ -106,39 +106,41 @@
       <view class="res-container">
         <text class="res-header">Play All</text>
         <block wx:for="{{allSongs}}">
-          <song-item name="{{item.name}}" artists="{{item.artists}}" album="{{item.album}}"></song-item>
+          <song-item itemId="{{item.id}}" name="{{item.name}}" artists="{{item.artists}}" album="{{item.album}}"></song-item>
         </block>
-        <loading isLoading="{{isLoading}}"></loading>        
+        <loading isLoading="{{isLoading}}"></loading>
       </view>
     </van-tab>
     <van-tab name="1000" title="歌单">
       <view class="all-container">
         <block wx:for="{{allPlayLists}}">
-          <play-list-item coverUrl="{{item.coverImgUrl}}" titleInfo="{{item.name}}" extra="{{item.trackCount}} songs by {{item.creator.nickname}}" tags="{{item.officialTags}}"></play-list-item>
+          <play-list-item itemId="{{item.id}}" coverUrl="{{item.coverImgUrl}}" titleInfo="{{item.name}}" extra="{{item.trackCount}} songs by {{item.creator.nickname}}" tags="{{item.officialTags}}"></play-list-item>
         </block>
-        <loading isLoading="{{isLoading}}"></loading>        
+        <loading isLoading="{{isLoading}}"></loading>
       </view>
     </van-tab>
     <van-tab name="100" title="歌手">
       <view class="all-container allAr">
         <block wx:for="{{allArtists}}">
-          <play-list-item user="{{true}}" coverUrl="{{item.picUrl}}" titleInfo="{{item.name}}" alias="{{item.alias[0]}}" followed="{{item.followed}}"></play-list-item>
+          <play-list-item itemId="{{item.id}}" user="{{true}}" coverUrl="{{item.picUrl}}" titleInfo="{{item.name}}" alias="{{item.alias[0]}}" followed="{{item.followed}}"></play-list-item>
         </block>
-        <loading isLoading="{{isLoading}}"></loading>        
-      </view>      
+        <loading isLoading="{{isLoading}}"></loading>
+      </view>
     </van-tab>
     <van-tab name="10" title="专辑">
       <view class="all-container">
         <block wx:for="{{allAlbums}}">
-          <play-list-item coverUrl="{{item.picUrl}}" titleInfo="{{item.name}}" alias="{{item.alias[0]}}" extra="{{item.artist.name}} {{item.publishTime}}"></play-list-item>
-        </block>          
-      </view>    
+          <play-list-item itemId="{{item.id}}" coverUrl="{{item.picUrl}}" titleInfo="{{item.name}}" alias="{{item.alias[0]}}" extra="{{item.artist.name}} {{item.publishTime}}"></play-list-item>
+        </block>
+        <loading isLoading="{{isLoading}}"></loading>
+      </view>
     </van-tab>
     <van-tab name="1002" title="用户">
       <view class="all-container">
         <block wx:for="{{allUsers}}">
-          <play-list-item user="{{true}}" coverUrl="{{item.avatarUrl}}" titleInfo="{{item.nickname}}" extra="{{item.signature}}" followed="{{item.followed}}"></play-list-item>
-        </block>        
+          <play-list-item itemId="{{item.id}}" user="{{true}}" coverUrl="{{item.avatarUrl}}" titleInfo="{{item.nickname}}" extra="{{item.signature}}" followed="{{item.followed}}"></play-list-item>
+        </block>
+        <loading isLoading="{{isLoading}}"></loading>
       </view>
     </van-tab>
   </van-tabs>

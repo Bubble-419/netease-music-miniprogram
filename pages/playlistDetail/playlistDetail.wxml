@@ -1,0 +1,46 @@
+<!-- pages/playlistDetail/playlistDetail.wxml -->
+<!-- 顶部容器 -->
+<view class="top-container">
+  <!-- 歌单信息 -->
+  <view class="top" style="background:url({{playlist.coverImgUrl}})">
+    <view class="header">
+      <view class="detail-cover">
+        <image mode="aspectFit" src="{{playlist.coverImgUrl}}"></image>
+      </view>
+      <view class="info">
+        <text class="title">{{playlist.name}}</text>
+        <play-list-item mini="{{true}}" user="{{true}}" coverUrl="{{playlist.creator.avatarUrl}}" titleInfo="{{playlist.creator.nickname}}" followed="{{playlist.creator.followed}}"></play-list-item>
+        <text class="desc multi-elli" wx:if="{{playlist.description!=null}}">
+          {{playlist.description}}
+        </text>
+      </view>
+    </view>
+  </view>
+  <!-- 歌单收藏、评论、分享数目 -->
+  <view class="btns">
+    <view class="btn">
+      <van-icon name="like-o" />
+      <text>{{playlist.subscribedCount}}</text>
+    </view>
+    <view class="btn">
+      <view class="btn">
+        <van-icon name="comment-o" />
+        <text>{{playlist.commentCount}}</text>
+      </view>
+    </view>
+    <view class="btn">
+      <view class="btn">
+        <van-icon name="share-o" />
+        <text>{{playlist.shareCount}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 歌曲列表 -->
+<view class="list">
+  <view class="container">
+    <block wx:for="{{playlist.tracks}}" wx:key="{{item.id}}">
+      <song-item itemId="{{item.id}}" name="{{item.name}}" index="{{index+1}}" artists="{{item.ar}}" album="{{item.al}}" playlistItem="{{true}}"></song-item>
+    </block>
+  </view>
+</view>

@@ -1,4 +1,4 @@
-<view class="song-item container" bind:tap="playSong">
+<view class="song-item container {{playlistItem?'':'border'}}" bind:tap="playSong">
   <!-- icon -->
   <view>
     <van-icon name="play-circle-o" size="40rpx" class="right-icon" bind:click="playSong" />
@@ -15,7 +15,9 @@
         <text wx:if="{{index<(artists.length-1)}}">/</text>
       </block>
       <!-- 专辑名 -->
-      <text class="elli" wx:if="{{album.name!=''}}"> - {{album.name}}</text>
+      <text class="elli" wx:if="{{album.name!=''}}">- {{album.name}}</text>
     </view>
   </view>
+  <!-- 歌曲序号 -->
+  <text class="index" wx:if="{{playlistItem}}">{{index}}</text>
 </view>

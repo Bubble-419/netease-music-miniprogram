@@ -31,7 +31,7 @@ Page({
     // 标签页切换变量
     tabsActive: "",
     // 加载flag
-    isLoading: false,
+    isLoading: true,
     // 分页
     offset: 1,
     // 单曲页
@@ -106,11 +106,7 @@ Page({
     wx.removeStorageSync("history");;
   },
   // 标签切换
-  switchTab: function (e) {
-    const tab = e.detail.name;
-    this.setData({
-      offset: 1
-    })
+  switchTab: function (tab) {
     switch (tab) {
       case "1":
         this.setSinglePage({
@@ -143,10 +139,19 @@ Page({
         });
         break;
     }
-
   },
-  // 查看更多
+  // 标签改变事件函数
+  onChangeTab: function (e) {
+    this.setData({
+      isLoading: true,
+      tabsActive: e.detail.name,
+      offset: 1
+    })
+    this.switchTab(e.detail.name);
+  },
+  // 综合页点击查看更多
   goToMore: function (e) {
+    // 查看更多直接修改tab值，触发onChangeTab函数
     this.setData({
       tabsActive: e.currentTarget.dataset.tab,
     })
@@ -157,38 +162,7 @@ Page({
       isLoading: true,
       offset: this.data.offset + 1,
     });
-    switch (this.data.tabsActive) {
-      case "1":
-        this.setSinglePage({
-          type: "1",
-          offset: this.data.offset
-        });
-        break;
-      case "1000":
-        this.setSinglePage({
-          type: "1000",
-          offset: this.data.offset
-        });
-        break;
-      case "100":
-        this.setSinglePage({
-          type: "100",
-          offset: this.data.offset
-        });
-        break;
-      case "10":
-        this.setSinglePage({
-          type: "10",
-          offset: this.data.offset
-        });
-        break;
-      case "1002":
-        this.setSinglePage({
-          type: "1002",
-          offset: this.data.offset
-        });
-        break;
-    }
+    this.switchTab(this.data.tabsActive);
   },
   /**
    * API函数
@@ -265,6 +239,9 @@ Page({
             break;
         }
       }
+      this.setData({
+        isLoading: false
+      })
     })
   },
 })

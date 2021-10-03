@@ -29,20 +29,35 @@ Component({
       type: Boolean,
       value: false
     },
+    // 是否关注
     followed: {
       type: Boolean,
       value: false
+    },
+    // id
+    itemId: {
+      type: Number,
+      value: 0
+    },
+    // 是否是mini组件
+    mini: {
+      type: Boolean,
+      value: false
     }
-    // 
-    // 点击后要跳转的页面,以及路由参数
-    // TODO
   },
   data: {
 
   },
   methods: {
     onClick: function () {
-      // TODO
+      console.log(this.properties.itemId);
+      if (!this.data.user) {
+        wx.navigateTo({
+          url: '../playlistDetail/playlistDetail?id=' + this.properties.itemId,
+        });
+      } else {
+        // TODO
+      }
     }
   },
   options: {

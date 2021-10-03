@@ -33,6 +33,12 @@ Page({
       url: '../search/search',
     });
   },
+  // 跳转歌单详情页面
+  goToDetail: function (e) {
+    wx.navigateTo({
+      url: '../playlistDetail/playlistDetail?id=' + e.currentTarget.dataset.id,
+    });
+  },
 
   /**
    * API函数

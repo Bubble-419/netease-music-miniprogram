@@ -4,6 +4,9 @@
   align-items: center;
   font-size: 32rpx;
   padding: 22rpx;
+}
+
+.border {
   border-top: 1px solid rgba(240, 240, 240, .8);
 }
 
@@ -16,4 +19,10 @@
 
 .right-icon {
   padding: 0 10rpx;
+}
+
+.index {
+  font-size: 32rpx;
+  color: lightgray;
+  width: 60rpx;
 }

@@ -1,6 +1,10 @@
 //Component Object
 Component({
   properties: {
+    index: {
+      type: Number,
+      value: 0
+    },
     name: {
       type: String,
       value: "",
@@ -13,6 +17,10 @@ Component({
       type: Object,
       value: {},
     },
+    playlistItem: {
+      type: Boolean,
+      value: false,
+    }
   },
   methods: {
     playSong: function () {

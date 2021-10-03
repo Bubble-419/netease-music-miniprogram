@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "song-item": "/components/songItem/songItem",
+    "van-icon": "@vant/weapp/icon/index",
+    "play-list-item": "/components/playListItem/playListItem"
+  },
+  "navigationBarTitleText": "歌单详情"
+}

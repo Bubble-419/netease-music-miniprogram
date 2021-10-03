@@ -10,13 +10,23 @@
   border-radius: 20rpx;
 }
 
-.item-info {
+.cover-mini {
+  flex: 0 0 60rpx;
+  border-radius: 20rpx;
+}
+
+.item-info,
+.mini-info {
   display: flex;
   flex-direction: column;
   padding: 0 20rpx;
   overflow: hidden;
+}
+
+.item-info {
   flex: 1;
 }
+
 
 .tags {
   display: inline-block;

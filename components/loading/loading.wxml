@@ -1,3 +1,3 @@
-<view class="loading" wx:if="{{isLoading}}">
+<view class="loading" hidden="{{!isLoading}}">
   <text>Loading...</text>
 </view>
