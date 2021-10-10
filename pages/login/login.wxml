@@ -1,0 +1,22 @@
+<view class="container">
+  <view class="logo">
+    <image class="logo-img" src="/assets/images/netease-logo.png" mode="aspectFill"></image>
+  </view>
+  <view class="login">
+    <van-button round type="primary" size="large" color="#FFFFFF" custom-style="color:#DD001B;" bind:tap="showPopup">
+      Log In
+    </van-button>
+  </view>
+  <van-popup show="{{showPopup}}" round bind:close="closePopup">
+    <van-field value="{{phone}}" label="手机号" placeholder="请输入手机号" title-width="3em" bind:input="setPhone" />
+    <van-field value="{{captcha.val}}" center label="验证码" placeholder="请输入短信验证码" use-button-slot title-width="3em" bind:input="setCaptcha">
+      <van-button slot="button" size="small" type="primary" round color="#DD001B" disabled="{{phone.length!==11 || captcha.sentStatus}}" bind:click="getCaptcha">
+        {{captcha.sentStatus?'已发送':'发送'}}
+      </van-button>
+    </van-field>
+    <van-button round type="primary" block color="#DD001B" bind:tap="login" custom-style="width: 300rpx;margin: 20rpx auto;" bind:click="login">
+      登录
+    </van-button>
+  </van-popup>
+  <van-dialog id="van-dialog" />
+</view>

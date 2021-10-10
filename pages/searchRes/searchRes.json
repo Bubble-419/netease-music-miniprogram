@@ -1,6 +1,0 @@
-{
-  "usingComponents": {
-    "search-header":"/components/searchHeader/searchHeader"
-  },
-  "navigationBarTitleText": "搜索结果"
-}

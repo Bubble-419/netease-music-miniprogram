@@ -1,2 +1,9 @@
-<!--pages/center/center.wxml-->
-<text>pages/center/center.wxml</text>
+<!-- pages/center/center.wxml -->
+<view class="container">
+  <view class="user-info">
+    <play-list-item user="{{true}}" coverUrl="{{profile.avatarUrl}}" titleInfo="{{profile.nickname}}" extra="{{profile.signature}}"></play-list-item>
+  </view>
+  <view class="btns"></view>
+  <view class="fav-songs"></view>
+  <view class="fav-lists"></view>
+</view>

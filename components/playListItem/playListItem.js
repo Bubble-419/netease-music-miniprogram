@@ -50,7 +50,6 @@ Component({
   },
   methods: {
     onClick: function () {
-      console.log(this.properties.itemId);
       if (!this.data.user) {
         wx.navigateTo({
           url: '../playlistDetail/playlistDetail?id=' + this.properties.itemId,

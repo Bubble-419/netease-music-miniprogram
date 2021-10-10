@@ -4,8 +4,8 @@
     "pages/center/center",
     "pages/personalFM/personalFM",
     "pages/search/search",
-    "pages/searchRes/searchRes",
-    "pages/playlistDetail/playlistDetail"
+    "pages/playlistDetail/playlistDetail",
+    "pages/login/login"
   ],
   "window": {
     "navigationBarBackgroundColor": "#DD001B",

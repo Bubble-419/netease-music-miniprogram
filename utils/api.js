@@ -7,12 +7,14 @@ const baseUrl = "http://localhost:3000";
 
 // 请求方法
 function request(method, url, data) {
+  let token = wx.getStorageInfoSync('user').token;
   return new Promise((resolve, reject) => {
     wx.request({
       url: baseUrl + url,
       data: data,
       header: {
-        'content-type': 'application/json'
+        'content-type': 'application/json',
+        'Authorization': token ? 'Bearer ' + token : '',
       },
       method: method,
       dataType: 'json',
@@ -29,7 +31,6 @@ function request(method, url, data) {
 
 // 导出API
 module.exports = {
-  // 首页
   // 搜索相关API
   // 1. 搜索
   search: (data) => {
@@ -62,5 +63,13 @@ module.exports = {
   // 歌单详情
   getPlaylistDetail: (data) => {
     return request("GET", "/playlist/detail", data)
+  },
+  // 获取验证码
+  getCaptcha: (data) => {
+    return request("GET", "/captcha/sent", data)
+  },
+  // 登录
+  login: (data) => {
+    return request("POST", "/login/cellphone", data)
   }
 }
