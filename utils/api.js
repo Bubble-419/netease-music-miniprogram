@@ -7,14 +7,14 @@ const baseUrl = "http://localhost:3000";
 
 // 请求方法
 function request(method, url, data) {
-  let token = wx.getStorageInfoSync('user').token;
+  let token = wx.getStorageSync('user').token;
   return new Promise((resolve, reject) => {
     wx.request({
       url: baseUrl + url,
       data: data,
       header: {
         'content-type': 'application/json',
-        'Authorization': token ? 'Bearer ' + token : '',
+        'Authorization': 'Bearer ' + token ? token : '',
       },
       method: method,
       dataType: 'json',
@@ -62,14 +62,26 @@ module.exports = {
   },
   // 歌单详情
   getPlaylistDetail: (data) => {
-    return request("GET", "/playlist/detail", data)
+    let cookie = wx.getStorageSync('user').cookie;
+    if (cookie) data.cookie = cookie;
+    return request("GET", "/playlist/detail", data);
   },
   // 获取验证码
   getCaptcha: (data) => {
-    return request("GET", "/captcha/sent", data)
+    return request("GET", "/captcha/sent", data);
   },
   // 登录
   login: (data) => {
-    return request("POST", "/login/cellphone", data)
+    return request("POST", "/login/cellphone", data);
+  },
+  // 获取用户信息
+  getLoginStatus: (data) => {
+    data.cookie = wx.getStorageSync('user').cookie;
+    return request("GET", "/login/status", data);
+  },
+  // 获取用户歌单
+  getUserPlaylist: (data) => {
+    data.cookie = wx.getStorageSync('user').cookie;
+    return request("GET", "/user/playlist", data);
   }
 }

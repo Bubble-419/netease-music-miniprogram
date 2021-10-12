@@ -24,5 +24,5 @@
 .index {
   font-size: 32rpx;
   color: lightgray;
-  width: 60rpx;
+  width: 80rpx;
 }

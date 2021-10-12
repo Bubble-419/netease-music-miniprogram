@@ -1,4 +1,5 @@
 <!-- page/index/index.wxml -->
+<import src="../templates/iconItem/iconItem"></import>
 <!-- 搜索框区域 -->
 <view class="search">
   <van-search value="{{ value }}" shape="round" background="#DD001B" placeholder="{{searchDefault}}" bind:tap="goSearch" />
@@ -19,12 +20,9 @@
   <!-- 轮播图结束 -->
   <!-- 圆形入口列表 -->
   <view class="icons">
-    <view class="icon" wx:for="{{homeIcons}}" wx:key="{{item.id}}">
-      <view class="icon-item">
-        <image src="{{item.iconUrl}}" mode="aspectFit"></image>
-      </view>
-      <text>{{item.name}}</text>
-    </view>
+    <block wx:for="{{homeIcons}}" wx:key="{{item.id}}">
+      <template is="iconItem" data="{{...item}}"></template>
+    </block>
   </view>
   <!-- 圆形入口列表结束 -->
 </view>

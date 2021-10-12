@@ -1,0 +1,8 @@
+<template name="iconItem">
+  <view class="icon">
+    <view>
+      <image src="{{iconUrl}}" mode="aspectFit" class="icon-item"></image>
+    </view>
+    <text>{{name}}</text>
+  </view>
+</template>

@@ -60,7 +60,7 @@ Page({
   login: function () {
     api.login({
       phone: this.data.phone,
-      captcha: this.data.captcha
+      captcha: this.data.captcha.val
     }).then(res => {
       if (res.data.code !== 200) {
         // msg弹窗
@@ -73,13 +73,16 @@ Page({
           key: 'user',
           data: {
             uid: res.data.account.id,
-            profile: res.data.profile,
-            token: res.data.token
+            token: res.data.token,
+            cookie: res.data.cookie,
           },
           success: (result) => {
             // 跳转至原界面
-            wx.navigateBack({
-              delta: 1
+            // wx.navigateBack({
+            //   delta: 1
+            // });
+            wx.switchTab({
+              url: '/pages/center/center',
             });
           },
         });

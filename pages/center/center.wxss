@@ -1,1 +1,36 @@
 /* pages/center/center.wxss */
+@import "../templates/iconItem/iconItem.wxss";
+
+page {
+  background-color: #F8F8F8;
+}
+
+.cent-container {
+  padding: 35rpx 20rpx;
+  border-radius: 30rpx;
+  background-color: #fff;
+  margin: 20rpx 0;
+}
+
+.icons {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.icon-item {
+  width: 145rpx;
+  height: 60rpx;
+}
+
+.fav-lists {
+  display: flex;
+  flex-direction: column;
+}
+
+.cent-header {
+  font-size: 35rpx;
+  font-weight: 700;
+  color: #494949;
+  margin: 20rpx;
+}

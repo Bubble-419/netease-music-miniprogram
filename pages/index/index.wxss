@@ -1,3 +1,5 @@
+@import "../templates/iconItem/iconItem.wxss";
+
 page {
   background-color: #F8F8F8;
 }
@@ -35,24 +37,7 @@ swiper {
   margin-top: 25rpx;
 }
 
-.icon {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 10rpx;
-  font-size: 30rpx;
-  color: gray;
-}
-
-.icon-item image {
-  position: relative;
-  height: 80rpx;
-  width: 80rpx;
-  z-index: 100;
-}
-
-.icon-item image::after {
+.icon-item::after {
   content: "";
   position: absolute;
   top: 0;

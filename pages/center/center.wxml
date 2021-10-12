@@ -1,9 +1,25 @@
 <!-- pages/center/center.wxml -->
+<import src="../templates/iconItem/iconItem"></import>
 <view class="container">
+  <!-- 用户信息 -->
   <view class="user-info">
-    <play-list-item user="{{true}}" coverUrl="{{profile.avatarUrl}}" titleInfo="{{profile.nickname}}" extra="{{profile.signature}}"></play-list-item>
+    <play-list-item user="{{true}}" itemId="{{uid}}" coverUrl="{{profile.avatarUrl}}" titleInfo="{{profile.nickname}}" extra="{{profile.signature}}"></play-list-item>
   </view>
-  <view class="btns"></view>
-  <view class="fav-songs"></view>
-  <view class="fav-lists"></view>
+  <!-- 图标 -->
+  <view class="cent-container icons">
+    <block wx:for="{{icons}}" wx:key="item.name">
+      <template is="iconItem" data="{{...item}}"></template>
+    </block>
+  </view>
+  <!-- 我喜欢的歌曲 -->
+  <view class="cent-container fav-songs">
+    <play-list-item itemId="{{favList.id}}" coverUrl="{{favList.coverImgUrl}}" titleInfo="Music" extra="{{favList.trackCount}} songs"></play-list-item>
+  </view>
+  <!-- 收藏歌单 -->
+  <view class="cent-container fav-lists">
+    <text class="cent-header">我收藏的歌单</text>
+    <block wx:for="{{otherLists}}" wx:key="{{item.id}}">
+      <play-list-item itemId="{{item.id}}" coverUrl="{{item.coverImgUrl}}" titleInfo="{{item.name}}" extra="{{item.trackCount}} songs by {{item.creator.nickname}}"></play-list-item>
+    </block>
+  </view>
 </view>
