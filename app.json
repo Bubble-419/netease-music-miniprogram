@@ -5,7 +5,8 @@
     "pages/personalFM/personalFM",
     "pages/search/search",
     "pages/playlistDetail/playlistDetail",
-    "pages/login/login"
+    "pages/login/login",
+    "pages/playSong/playSong"
   ],
   "window": {
     "navigationBarBackgroundColor": "#DD001B",

@@ -53,8 +53,6 @@ Component({
   lifetimes: {
     attached: function () {
       if (this.properties.user) {
-        console.log('itemId:' + this.properties.itemId);
-        console.log('uid:' + wx.getStorageSync('user').uid);
         if ((this.properties.itemId === wx.getStorageSync('user').uid) && this.properties.user) {
           this.setData({
             self: true

@@ -1,0 +1,62 @@
+<!-- pages/playSong/playSong.wxml -->
+<view class="frosted-glass" style="background:url({{song.al.picUrl}}) center">
+  <view class="container">
+    <!-- 首部区域，包括歌曲名、歌手、分享 -->
+    <view class="header">
+      <van-icon name="arrow-down" color="#fff" />
+      <view class="info">
+        <!-- 歌曲名 -->
+        <text class="name">{{song.name}}</text>
+        <!-- 歌手 -->
+        <view class="extra">
+          <block wx:for="{{song.ar}}">
+            <text>{{item.name}}</text>
+            <text wx:if="{{index<(song.ar.length-1)}}">/</text>
+          </block>
+        </view>
+      </view>
+      <!-- 分享 -->
+      <van-icon class-prefix="my-icon" name="share" />
+    </view>
+    <!-- 播放主体区域 -->
+    <view class="song-wrapper">
+      <!-- 黑胶播放器 -->
+      <view class="player" hidden="{{showLyrics}}" bind:tap="changePlayer">
+        <image src="../../assets/images/player_bar.png" mode="aspectFill" class="player-bar {{isPlaying?'player-bar-playing':''}}"></image>
+        <image src="../../assets/images/disc.png" mode="aspectFill" class="disc {{isPlaying?'playingImg':'pauseImg'}}"></image>
+        <image src="{{song.al.picUrl}}" mode="aspectFill" class="cover {{isPlaying?'playingImg':'pauseImg'}}"></image>
+      </view>
+      <!-- 歌词 -->
+      <scroll-view class="lyrics" hidden="{{!showLyrics}}" scroll-y="true" scroll-top="0" scroll-left="0" scroll-into-view="" scroll-with-animation="true" enable-flex="true" bind:tap="changePlayer">
+        <view class="lyrics">
+          <block wx:for="{{lyrics}}">
+            <text class="lyric">{{item}}</text>
+          </block>
+        </view>
+      </scroll-view>
+    </view>
+    <!-- 底部区域 -->
+    <view class="footer">
+      <!-- 对歌曲的操作区域 -->
+      <view class="icons">
+        <!-- 上一首 -->
+        <van-icon class="my-icon" class-prefix="my-icon" name="previous" />
+        <!-- 播放/暂停 -->
+        <van-icon class="my-icon" class-prefix="my-icon" name="{{isPlaying?'pauseCircle':'playCircle'}}" bind:click="play" />
+        <!-- 下一首 -->
+        <van-icon class="my-icon" class-prefix="my-icon" name="next" />
+      </view>
+      <!-- 进度条 -->
+      <slider class="" min="0" max="{{songDuration}}" value="{{songCurrNum}}" backgroundColor="#CCCCCC" activeColor="rgba(255,255,255,.8)" block-size="12" bindchange=""></slider>
+      <!-- 歌曲附加信息区域 -->
+      <view class="icons" hidden="{{showLyrics}}">
+        <!-- 喜欢 -->
+        <van-icon name="{{like?'like':'like-o'}}" color="{{like?'#DD001B':'#CCCCCC'}}" size="20px" />
+        <!-- 评论 -->
+        <van-icon name="comment-o" color="#CCCCCC" info="{{commentNum}}" size="20px" />
+        <!-- 歌曲信息弹窗 -->
+        <van-icon name="ellipsis" color="#CCCCCC" size="20px" />
+      </view>
+    </view>
+  </view>
+</view>

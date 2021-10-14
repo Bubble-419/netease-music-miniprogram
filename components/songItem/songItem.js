@@ -1,6 +1,10 @@
 //Component Object
 Component({
   properties: {
+    itemId: {
+      type: Number,
+      value: 0
+    },
     index: {
       type: Number,
       value: 0
@@ -24,7 +28,10 @@ Component({
   },
   methods: {
     playSong: function () {
-      console.log(this.properties.songItem.id);
+      console.log(this.properties.itemId);
+      wx.navigateTo({
+        url: '../playSong/playSong?ids=' + this.properties.itemId,
+      });
     }
   },
   options: {

@@ -4,10 +4,13 @@
 
 // 定义前缀URL
 const baseUrl = "http://localhost:3000";
+// cookie
+const cookie = wx.getStorageSync('user').cookie;
+// token
+const token = wx.getStorageSync('user').token;
 
 // 请求方法
 function request(method, url, data) {
-  let token = wx.getStorageSync('user').token;
   return new Promise((resolve, reject) => {
     wx.request({
       url: baseUrl + url,
@@ -62,7 +65,6 @@ module.exports = {
   },
   // 歌单详情
   getPlaylistDetail: (data) => {
-    let cookie = wx.getStorageSync('user').cookie;
     if (cookie) data.cookie = cookie;
     return request("GET", "/playlist/detail", data);
   },
@@ -76,12 +78,33 @@ module.exports = {
   },
   // 获取用户信息
   getLoginStatus: (data) => {
-    data.cookie = wx.getStorageSync('user').cookie;
+    data.cookie = cookie;
     return request("GET", "/login/status", data);
   },
   // 获取用户歌单
   getUserPlaylist: (data) => {
-    data.cookie = wx.getStorageSync('user').cookie;
+    data.cookie = cookie;
     return request("GET", "/user/playlist", data);
+  },
+  // 获取歌曲详情
+  getSongDetail: (data) => {
+    return request("GET", "/song/detail", data);
+  },
+  // 获取音乐url
+  getSongUrl: (data) => {
+    return request("GET", "/song/url", data);
+  },
+  // 获取歌词
+  getLyrics: (data) => {
+    return request("GET", "/lyric", data);
+  },
+  // 获取用户的喜欢音乐的列表
+  getUserLikeList: (data) => {
+    data.cookie = cookie;
+    return request("GET", "/likelist", data);
+  },
+  // 获取歌曲评论
+  getComments: (data) => {
+    return request("GET", "/comment/music", data);
   }
 }
