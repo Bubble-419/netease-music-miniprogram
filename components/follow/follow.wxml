@@ -1,0 +1,5 @@
+<!-- components/follow.wxml -->
+<van-button type="default" round hairline size="mini" wx:if="{{itemId!==uid&&!mini}}" bind:tap="follow">
+  {{myFollowed?' √ 已关注':' + 关注'}}
+</van-button>
+<van-icon name="{{myFollowed?'passed':'add-o'}}" wx:if="{{itemId!==uid&&mini}}" bind:tap="follow" />

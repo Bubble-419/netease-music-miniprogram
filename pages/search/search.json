@@ -4,10 +4,12 @@
     "van-icon": "@vant/weapp/icon/index",
     "van-tab": "@vant/weapp/tab/index",
     "van-tabs": "@vant/weapp/tabs/index",
+    "van-button": "@vant/weapp/button/index",
     "search-header": "/components/searchHeader/searchHeader",
     "song-item": "/components/songItem/songItem",
     "play-list-item": "/components/playListItem/playListItem",
-    "loading": "/components/loading/loading"
+    "loading": "/components/loading/loading",
+    "follow": "/components/follow/follow"
   },
   "navigationBarTitleText": "搜索"
 }

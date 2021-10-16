@@ -46,22 +46,7 @@ Component({
     },
 
   },
-  data: {
-    // 是否是自己
-    self: false,
-  },
-  lifetimes: {
-    attached: function () {
-      if (this.properties.user) {
-        if ((this.properties.itemId === wx.getStorageSync('user').uid) && this.properties.user) {
-          this.setData({
-            self: true
-          })
-        }
-      }
-
-    }
-  },
+  data: {},
   methods: {
     onClick: function () {
       if (!this.data.user) {

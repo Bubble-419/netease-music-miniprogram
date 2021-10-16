@@ -1,5 +1,6 @@
 // pages/playlistDetail/playlistDetail.js
 const api = require("../../utils/api");
+
 Page({
   data: {
     playlist: {},
@@ -9,7 +10,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getPlaylist(options.id)
+    this.getPlaylist(options.id);
   },
 
   /**

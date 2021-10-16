@@ -16,9 +16,6 @@
       </block>
     </view>
   </view>
-  <!-- 关注按钮 -->
-  <van-button type="default" round hairline size="mini" class="{{followed?'followed':''}}" wx:if="{{user&&!mini&&!self}}">
-    {{followed?' √ 已关注':' + 关注'}}
-  </van-button>
-  <van-icon name="{{followed?'passed-o':'add-o'}}" wx:if="{{user&&mini&&!self}}" />
+  <!-- 关注、点赞等slot -->
+  <slot></slot>
 </view>

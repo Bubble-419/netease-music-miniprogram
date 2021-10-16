@@ -9,10 +9,10 @@
       </view>
       <view class="info">
         <text class="title">{{playlist.name}}</text>
-        <play-list-item mini="{{true}}" user="{{true}}" itemId="{{playlist.creator.userId}}" coverUrl="{{playlist.creator.avatarUrl}}" titleInfo="{{playlist.creator.nickname}}" followed="{{playlist.creator.followed}}"></play-list-item>
-        <text class="desc multi-elli" wx:if="{{playlist.description!=null}}">
-          {{playlist.description}}
-        </text>
+        <play-list-item user="{{true}}" itemId="{{playlist.creator.userId}}" coverUrl="{{playlist.creator.avatarUrl}}" titleInfo="{{playlist.creator.nickname}}">
+          <follow itemId="{{playlist.creator.userId}}" mini="true" followed="{{playlist.creator.followed}}" wx:if="{{playlist.creator.userId}}"></follow>
+        </play-list-item>
+        <text class="desc multi-elli" wx:if="{{playlist.description!=null}}">{{playlist.description}}</text>
       </view>
     </view>
   </view>

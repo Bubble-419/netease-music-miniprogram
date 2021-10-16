@@ -76,7 +76,9 @@
       <view class="res-container">
         <text class="res-header">歌手</text>
         <block wx:for="{{artist.artists}}">
-          <play-list-item itemId="{{item.id}}" user="{{true}}" coverUrl="{{item.picUrl}}" titleInfo="{{item.name}}" alias="{{item.alias[0]}}" followed="{{item.followed}}"></play-list-item>
+          <play-list-item itemId="{{item.id}}" user="{{true}}" coverUrl="{{item.picUrl}}" titleInfo="{{item.name}}" alias="{{item.alias[0]}}">
+            <follow itemId="{{item.id}}" followed="{{item.followed}}" wx:if="{{item.id}}"></follow>
+          </play-list-item>
         </block>
         <view class="more-info" data-tab="100" bind:tap="goToMore">
           <text>{{artist.moreText}}</text>
@@ -95,7 +97,9 @@
       <view class="res-container">
         <text class="res-header">用户</text>
         <block wx:for="{{user.users}}">
-          <play-list-item itemId="{{item.id}}" user="{{true}}" coverUrl="{{item.avatarUrl}}" titleInfo="{{item.nickname}}" extra="{{item.signature}}" followed="{{item.followed}}"></play-list-item>
+          <play-list-item itemId="{{item.id}}" user="{{true}}" coverUrl="{{item.avatarUrl}}" titleInfo="{{item.nickname}}" extra="{{item.signature}}" followed="{{item.followed}}">
+            <follow itemId="{{item.id}}" followed="{{item.followed}}" wx:if="{{item.id}}"></follow>
+          </play-list-item>
         </block>
         <view class="more-info" data-tab="1002" bind:tap="goToMore">
           <text>{{user.moreText}}</text>
@@ -122,7 +126,9 @@
     <van-tab name="100" title="歌手">
       <view class="all-container allAr">
         <block wx:for="{{allArtists}}">
-          <play-list-item itemId="{{item.id}}" user="{{true}}" coverUrl="{{item.picUrl}}" titleInfo="{{item.name}}" alias="{{item.alias[0]}}" followed="{{item.followed}}"></play-list-item>
+          <play-list-item itemId="{{item.id}}" user="{{true}}" coverUrl="{{item.picUrl}}" titleInfo="{{item.name}}" alias="{{item.alias[0]}}">
+            <follow itemId="{{item.id}}" followed="{{item.followed}}" wx:if="{{item.id}}"></follow>
+          </play-list-item>
         </block>
         <loading isLoading="{{isLoading}}"></loading>
       </view>
@@ -138,7 +144,9 @@
     <van-tab name="1002" title="用户">
       <view class="all-container">
         <block wx:for="{{allUsers}}">
-          <play-list-item itemId="{{item.id}}" user="{{true}}" coverUrl="{{item.avatarUrl}}" titleInfo="{{item.nickname}}" extra="{{item.signature}}" followed="{{item.followed}}"></play-list-item>
+          <play-list-item itemId="{{item.id}}" user="{{true}}" coverUrl="{{item.avatarUrl}}" titleInfo="{{item.nickname}}" extra="{{item.signature}}">
+            <follow itemId="{{item.id}}" followed="{{item.followed}}" wx:if="{{item.id}}"></follow>
+          </play-list-item>
         </block>
         <loading isLoading="{{isLoading}}"></loading>
       </view>
