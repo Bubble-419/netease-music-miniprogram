@@ -81,7 +81,7 @@ module.exports = {
     data.cookie = cookie;
     return request("GET", "/login/status", data);
   },
-  // 获取用户歌单
+  // 获取用户歌单(需要登录)
   getUserPlaylist: (data) => {
     data.cookie = cookie;
     return request("GET", "/user/playlist", data);
@@ -103,8 +103,22 @@ module.exports = {
     data.cookie = cookie;
     return request("GET", "/likelist", data);
   },
-  // 获取歌曲评论
+  // 获取评论
   getComments: (data) => {
-    return request("GET", "/comment/music", data);
+    return request("GET", '/comment/new', data);
+  },
+  // 关注/取关用户(需要登录)
+  follow: (data) => {
+    data.cookie = cookie;
+    return request("GET", "/follow", data);
+  },
+  // 点赞(需要登录)
+  like: (data) => {
+    data.cookie = cookie;
+    return request("GET", "/like", data);
+  },
+  // 获取评论的楼层回复
+  getFloorComments: function (data) {
+    return request("GET", "/comment/floor", data);
   }
 }
