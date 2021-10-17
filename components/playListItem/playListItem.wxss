@@ -23,7 +23,8 @@
   overflow: hidden;
 }
 
-.item-info {
+.item-info,
+.flex {
   flex: 1;
 }
 

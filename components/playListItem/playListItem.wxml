@@ -2,7 +2,7 @@
 <view class="play-list-item container" bind:tap="onClick">
   <!-- 封面/头像 -->
   <image class="{{mini?'cover-mini':'cover'}} {{user?'round':''}}" src="{{coverUrl}}" mode="widthFix"></image>
-  <view class="{{mini?'mini-info':'item-info'}}">
+  <view class="{{mini?'mini-info':'item-info'}} {{flex?'flex':''}}">
     <!-- 标题/名字 -->
     <view class="title-info elli">
       <text>{{titleInfo}}</text>

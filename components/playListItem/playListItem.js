@@ -44,7 +44,10 @@ Component({
       type: Boolean,
       value: false
     },
-
+    flex: {
+      type: Boolean,
+      value: false
+    }
   },
   data: {},
   methods: {
