@@ -1,0 +1,14 @@
+<!--components/commentContent/commentContent.wxml-->
+<!-- 评论内容组件 -->
+<view class="comment-item">
+  <!-- 评论者个人信息+点赞数 -->
+  <play-list-item user="{{true}}" mini="{{true}}" flex="{{true}}" coverUrl="{{commentItem.user.avatarUrl}}" titleInfo="{{commentItem.user.nickname}}" extra="{{commentItem.time}}">
+    <like itemId="{{itemId}}" cid="{{commentItem.commentId}}" likedCount="{{commentItem.likedCount}}" liked="{{commentItem.liked}}" wx:if="{{commentItem.commentId}}"></like>
+  </play-list-item>
+  <!-- 评论内容 -->
+  <view class="con">
+    <text class="content">{{commentItem.content}}</text>
+    <!-- 回复，两层判断，不能为null（楼中楼回复时为null）且回复数目不能为0 -->
+    <text class="reply" wx:if="{{commentItem.showFloorComment.replyCount!==0&&commentItem.showFloorComment}}" bind:tap="showReply">{{commentItem.showFloorComment.replyCount}}条回复 ></text>
+  </view>
+</view>

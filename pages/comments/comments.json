@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "comment-item": "/components/commentItem/commentItem",
+    "loading": "/components/loading/loading",
+    "van-icon": "@vant/weapp/icon/index"
+  },
+  "navigationBarTitleText": "评论"
+}

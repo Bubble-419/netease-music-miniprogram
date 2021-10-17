@@ -1,0 +1,19 @@
+/* pages/comments/comments.wxss */
+.header {
+  position: sticky;
+  display: flex;
+  justify-content: space-between;
+  padding: 35rpx;
+  color: #CCCCCC;
+  font-size: 35rpx;
+}
+
+.title,
+.isActive {
+  color: #494949;
+  font-weight: 700;
+}
+
+.tab {
+  padding: 0 15rpx;
+}

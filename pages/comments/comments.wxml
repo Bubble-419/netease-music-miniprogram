@@ -1,0 +1,20 @@
+<!-- pages/comments/comments.wxml -->
+<!-- 头部区域 -->
+<view class="header">
+  <text class="title">评论区({{totalCount}})</text>
+  <view class="tabs">
+    <text class="tab {{comReq.sortType===1?'isActive':''}}" data-sort="1" bind:tap="changeTab">推荐</text>
+    <text class="tab {{comReq.sortType===3?'isActive':''}}" data-sort="3" bind:tap="changeTab">最新</text>
+  </view>
+</view>
+<!-- 评论内容，滚动区域 -->
+<view class="comments">
+  <scroll-view class="" scroll-y="true">
+    <block wx:for="{{comments}}" wx:key="{{item.commentId}}">
+      <comment-item itemId="{{comReq.id}}" commentItem="{{item}}" type="{{comReq.type}}"></comment-item>
+    </block>
+  </scroll-view>
+  <loading isLoading="{{isLoading}}"></loading>
+</view>
+<!-- 评论 -->
+<view class="comment"></view>

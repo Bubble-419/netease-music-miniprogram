@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "play-list-item": "/components/playListItem/playListItem",
+    "like": "/components/like/like"
+  }
+}

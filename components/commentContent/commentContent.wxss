@@ -1,0 +1,19 @@
+/* components/commentContent/commentContent.wxss */
+.comment-item {
+  padding: 0 30rpx;
+}
+
+.con {
+  display: flex;
+  flex-flow: column;
+  font-size: 35rpx;
+  margin-left: 100rpx;
+  padding-bottom: 30rpx;
+  border-bottom: 1px solid #F0F0F0;
+}
+
+.reply {
+  font-size: 30rpx;
+  padding-top: 10rpx;
+  color: #0969da;
+}
