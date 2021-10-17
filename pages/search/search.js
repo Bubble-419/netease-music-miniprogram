@@ -1,7 +1,6 @@
 // pages/search/search.js
 const api = require("../../utils/api");
 const util = require("../../utils/util");
-const app = getApp();
 
 Page({
 
@@ -46,7 +45,6 @@ Page({
     allArtists: [],
     // 用户页
     allUsers: [],
-    uid: app.globalData.uid,
   },
 
   /**
