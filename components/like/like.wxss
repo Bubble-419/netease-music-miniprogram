@@ -1,0 +1,10 @@
+/* components/like/like.wxss */
+.like {
+  font-size: 35rpx;
+  color: #CCCCCC;
+}
+
+.count {
+  font-size: 32rpx;
+  padding: 5rpx;
+}

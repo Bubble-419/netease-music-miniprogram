@@ -1,0 +1,5 @@
+<!-- components/like/like.wxml -->
+<view class="like">
+  <text class="count" wx:if="{{myLikedCount!==0}}">{{myLikedCount}}</text>
+  <van-icon name="{{myLiked?'good-job-o':'good-job'}}" color="{{myLiked?'#DD001B':'#CCCCCC'}}" />
+</view>
