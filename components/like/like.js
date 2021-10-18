@@ -65,10 +65,9 @@ Component({
         t: this.properties.liked ? 0 : 1,
         type: 0
       }).then(res => {
-        console.log(res);
         this.setData({
           myLiked: !this.data.myLiked,
-          myLikedCount: this.data.myLikedCount++
+          myLikedCount: !this.data.myLiked ? this.data.myLikedCount + 1 : this.data.myLikedCount - 1
         })
       })
     }
