@@ -1,1 +1,15 @@
 /* components/commentItem/commentItem.wxss */
+.replies {
+  height: 100%;
+}
+
+.header {
+  padding: 30rpx 0;
+}
+
+.title {
+  padding: 10rpx 30rpx;
+  color: #494949;
+  font-weight: 700;
+  font-size: 35rpx;
+}

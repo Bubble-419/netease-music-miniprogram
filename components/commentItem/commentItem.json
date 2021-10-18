@@ -2,6 +2,7 @@
   "component": true,
   "usingComponents": {
     "comment-content": "/components/commentContent/commentContent",
+    "loading": "/components/loading/loading",
     "van-popup": "@vant/weapp/popup/index"
   }
 }

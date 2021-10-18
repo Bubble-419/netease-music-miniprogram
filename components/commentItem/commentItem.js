@@ -26,14 +26,8 @@ Component({
   data: {
     // 展示回复
     showReply: false,
-    // // 回复数组
-    // replies: [],
-    // // 回复总数
-    // totalCount: 0,
-    // // 最后一条的时间（用于分页）
-    // time: '',
     // 回复数据
-    replyData: {}
+    replyData: {},
   },
 
   /**
@@ -42,29 +36,32 @@ Component({
   methods: {
     // 展示回复
     changeShowRepley: function () {
+      console.log('changeShow');
       this.setData({
         showReply: !this.data.showReply
-      })
+      });
     },
     // 获取回复
     getFloor: function () {
-      console.log('floor');
       api.getFloorComments({
         parentCommentId: this.properties.commentItem.commentId,
         id: this.properties.itemId,
         type: this.properties.type,
         time: this.data.replyData.time ? this.data.replyData.time : ''
       }).then(res => {
-        console.log(res);
         if (res.data.code === 200) {
-          this.setData({
-            // replies: res.data.data.comments,
-            // totalCount: res.data.data.totalCount,
-            // time: res.data.data.time
-            replyData: res.data.data
-          })
-        }
-      })
-    }
+          if (this.data.replyData.time) {
+            this.setData({
+              ['replyData.comments']: this.data.replyData.comments.concat(res.data.data.comments),
+              ['replyData.time']: res.data.data.time,
+            })
+          } else {
+            this.setData({
+              replyData: res.data.data
+            });
+          };
+        };
+      });
+    },
   }
 })

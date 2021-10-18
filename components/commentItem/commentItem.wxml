@@ -2,8 +2,8 @@
 <!-- 评论组件 -->
 <comment-content commentItem="{{commentItem}}" itemId="{{itemId}}" bind:showReply="changeShowRepley"></comment-content>
 <!-- 回复弹出层 -->
-<van-popup show="{{showReply}}" position="bottom" round bind:before-enter="getFloor" bind:close="changeShowReply" custom-style="height:70vh">
-  <view class="reply">
+<van-popup show="{{showReply}}" position="bottom" round bind:enter="getFloor" bind:close="changeShowReply" custom-style="height:80vh">
+  <scroll-view class="replies" scroll-y="true" bindscrolltolower="getFloor">
     <!-- 回复首部 -->
     <view class="header">
       <text class="title">回复({{replyData.totalCount}})</text>
@@ -12,11 +12,10 @@
     </view>
     <!-- 全部回复 -->
     <view class="all-rpls">
-      <scroll-view class="" scroll-y="true">
-        <block wx:for="{{replyData.comments}}" wx:key="{{item.commentId}}">
-          <comment-content commentItem="{{item}}" itemId="{{itemId}}"></comment-content>
-        </block>
-      </scroll-view>
+      <text class="title">全部回复</text>
+      <block wx:for="{{replyData.comments}}" wx:key="{{item.commentId}}">
+        <comment-content commentItem="{{item}}" itemId="{{itemId}}"></comment-content>
+      </block>
     </view>
-  </view>
+  </scroll-view>
 </van-popup>
