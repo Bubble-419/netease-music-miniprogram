@@ -8,3 +8,7 @@
   font-size: 32rpx;
   padding: 5rpx;
 }
+
+.liked {
+  color: #DD001B;
+}
