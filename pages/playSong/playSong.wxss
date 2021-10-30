@@ -97,21 +97,56 @@
 
 .lyrics {
   display: flex;
-  flex-flow: column wrap;
+  flex-direction: column;
   align-items: center;
+  width: calc(100%+6rpx);
   height: 100%;
   color: #CCCCCC;
   font-size: 35rpx;
 }
 
+
+
 .lyric {
   margin: 20rpx 0;
+  text-align: center;
+}
+
+.lyric-top {
+  margin-top: 25vh;
+}
+
+.lyric-bottom {
+  margin-bottom: 25vh;
+}
+
+.lyric-hl {
+  color: #FFF;
+}
+
+.progress {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #CCCCCC;
+  font-size: 30rpx;
+}
+
+.progress-bar {
+  width: 65%;
 }
 
 .icons {
   display: flex;
   justify-content: space-around;
   align-items: center;
+}
+
+.comment .van-info {
+  border: none;
+  background-color: #DD001B;
+  right: -10rpx;
+  font-size: 25rpx;
 }
 
 .footer {

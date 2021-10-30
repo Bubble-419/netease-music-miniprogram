@@ -27,10 +27,10 @@
         <image src="{{song.al.picUrl}}" mode="aspectFill" class="cover {{isPlaying?'playingImg':'pauseImg'}}"></image>
       </view>
       <!-- 歌词 -->
-      <scroll-view class="lyrics" hidden="{{!showLyrics}}" scroll-y="true" scroll-top="0" scroll-left="0" scroll-into-view="" scroll-with-animation="true" enable-flex="true" bind:tap="changePlayer">
+      <scroll-view class="lyrics" hidden="{{!showLyrics}}" scroll-y="{{true}}" scroll-top="{{scrollVal}}" scroll-with-animation="true" enable-flex="true" bind:tap="changePlayer">
         <view class="lyrics">
-          <block wx:for="{{lyrics}}">
-            <text class="lyric">{{item}}</text>
+          <block wx:for="{{lyrics}}" wx:key="{{item.lid}}">
+            <text class="lyric {{index===lyricIndex?'lyric-hl':''}} {{index===0?'lyric-top':''}} {{index===lyrics.length-1?'lyric-bottom':''}}" id="{{item.lid}}">{{item.lrc}}</text>
           </block>
         </view>
       </scroll-view>
@@ -47,13 +47,17 @@
         <van-icon class="my-icon" class-prefix="my-icon" name="next" />
       </view>
       <!-- 进度条 -->
-      <slider class="" min="0" max="{{songDuration}}" value="{{songCurrNum}}" backgroundColor="#CCCCCC" activeColor="rgba(255,255,255,.8)" block-size="12" bindchange=""></slider>
+      <view class="progress">
+        <text>{{songCurrShow}}</text>
+        <slider class="progress-bar" min="0" max="{{songDuration}}" value="{{songCurr}}" backgroundColor="#CCCCCC" activeColor="rgba(255,255,255,.8)" block-size="12" bindchange="changeProg" bindtouchstart="sildeProg"></slider>
+        <text>{{songDurationShow}}</text>
+      </view>
       <!-- 歌曲附加信息区域 -->
       <view class="icons" hidden="{{showLyrics}}">
         <!-- 喜欢 -->
         <van-icon name="{{like?'like':'like-o'}}" color="{{like?'#DD001B':'#CCCCCC'}}" size="20px" />
         <!-- 评论 -->
-        <van-icon name="comment-o" color="#CCCCCC" info="{{commentNum}}" size="20px" />
+        <van-icon class="comment" name="comment-o" color="#CCCCCC" info="{{commentNum}}" size="20px" bind:click="goToComments" />
         <!-- 歌曲信息弹窗 -->
         <van-icon name="ellipsis" color="#CCCCCC" size="20px" />
       </view>
