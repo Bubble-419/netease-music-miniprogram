@@ -1,5 +1,7 @@
 const api = require("../../utils/api");
 const util = require("../../utils/util");
+const app = getApp();
+const bam = app.globalData.bam;
 
 // pages/playSong/playSong.js
 Page({
@@ -17,9 +19,9 @@ Page({
     // 播放状态
     isPlaying: true,
     // 歌曲总时长（格式为[00:00]）
-    songDurationShow: '',
+    songDurationShow: '00:00',
     // 歌曲当前秒数（格式为[00:00]）
-    songCurrShow: '',
+    songCurrShow: '00:00',
     // 歌曲总时长（无格式）
     songDuration: '',
     // 歌曲当前秒数（无格式）
@@ -57,7 +59,7 @@ Page({
    */
   // 播放或暂停
   play: function () {
-    const bam = wx.getBackgroundAudioManager();
+    // const bam = wx.getBackgroundAudioManager();
     if (this.data.isPlaying) {
       bam.pause();
     } else {
@@ -121,7 +123,7 @@ Page({
   },
   // 改变歌曲进度，可以通过拖动进度条或者滚动歌词触发，传参为歌曲时间的终值
   changeSongProg: function (songCurr) {
-    const bam = wx.getBackgroundAudioManager();
+    // const bam = wx.getBackgroundAudioManager();
     // 改变音频进度
     bam.seek(songCurr);
     this.setData({
@@ -129,8 +131,8 @@ Page({
     });
     // 改变歌词进度，要使得lyricIndex和scrollVal跳到正确地方
     let lyricIndex = this.data.lyrics.findIndex((lyc, index, lycs) => {
-      return lyc.lid < songCurr && lycs[index + 1].lid > songCurr;
-    });
+      return songCurr < lyc.lid;
+    }) - 1;
     this.setData({
       scrollVal: lyricIndex * 34,
       lyricIndex,
@@ -152,6 +154,39 @@ Page({
    */
   dumpLyric: function (e) {
     console.log(e);
+  },
+  // 切歌
+  switchSong: function (flag = true) {
+    let wsl = app.globalData.waitingSongsList;
+    let pos = wsl.findIndex(s => {
+      return s.id === this.data.song.id
+    });
+    let target = pos + 1;
+    // true:next false:prev
+    if (flag) {
+      // 当前已经是最后一首时，循环播放
+      if (target > wsl.length - 1) {
+        target = 0;
+      }
+    } else {
+      target = pos - 1;
+      // 第一首时，跳到最后一首
+      if (target < 0) {
+        target = wsl.length - 1;
+      }
+    }
+    let curPages = getCurrentPages();
+    curPages[curPages.length - 1].onLoad({
+      ids: wsl[target].id
+    });
+  },
+  // 下一首
+  nextSong: function () {
+    this.switchSong();
+  },
+  // 上一首
+  prevSong: function () {
+    this.switchSong(false);
   },
   /**
    * API函数
@@ -181,7 +216,7 @@ Page({
       id: this.data.song.id
     }).then(res => {
       if (res.data.code === 200 && res.data.data[0].url) {
-        const bam = wx.getBackgroundAudioManager();
+        // const bam = wx.getBackgroundAudioManager();
         bam.src = res.data.data[0].url;
         // 给实例的其他属性值赋值
         bam.title = this.data.song.name;
@@ -199,14 +234,30 @@ Page({
               songCurr: bam.currentTime,
             })
           }
-          // 因为currentTime的值基本不可能和歌词秒数对上，所以这里要通过比较判断歌词到哪一行了
-          // this.dumpLyric(this.data.lyricIndex, 1);
-          if (bam.currentTime > this.data.lyrics[this.data.lyricIndex + 1].lid && bam.currentTime < this.data.lyrics[this.data.lyricIndex + 2].lid) {
-            this.setData({
-              lyricIndex: this.data.lyricIndex + 1,
-              scrollVal: this.data.lyricIndex * 34
-            })
+          /**
+           * 因为currentTime的值基本不可能和歌词秒数对上，所以这里要通过比较判断歌词到哪一行了
+           * 两种情况：
+           * 1. 歌词位于除了最后一行以外其他的行
+           * 2. 歌词已经处于最后一行
+           */
+          // let lyricIndex = this.data.lyricIndex + 1;
+          // if (bam.currentTime > this.data.lyrics[lyricIndex].lid && bam.currentTime < this.data.lyrics[lyricIndex + 1].lid) {
+          //   this.setData({
+          //     lyricIndex,
+          //     scrollVal: this.data.lyricIndex * 34
+          //   })
+          // }
+          if (this.data.lyricIndex < this.data.lyrics.length - 1) {
+            if (bam.currentTime >= this.data.lyrics[this.data.lyricIndex + 1].lid) {
+              this.setData({
+                lyricIndex: this.data.lyricIndex + 1,
+                scrollVal: this.data.lyricIndex * 34
+              })
+            }
           }
+        });
+        bam.onEnded(() => {
+          this.nextSong();
         });
       }
     })
@@ -254,7 +305,8 @@ Page({
           });
         } else {
           this.setData({
-            lyrics: this.formatLyrics(res.data.lrc.lyric)
+            lyrics: this.formatLyrics(res.data.lrc.lyric),
+            lyricIndex: 0
           });
         }
       }

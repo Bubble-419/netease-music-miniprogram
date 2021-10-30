@@ -1,5 +1,7 @@
 // pages/playlistDetail/playlistDetail.js
 const api = require("../../utils/api");
+const app = getApp();
+
 
 Page({
   data: {
@@ -14,6 +16,15 @@ Page({
   },
 
   /**
+   * 页面函数
+   */
+  goToComments: function () {
+    wx.navigateTo({
+      url: `../comments/comments?itemId=${this.data.playlist.id}&type=2`,
+    });
+  },
+
+  /**
    * API函数
    */
   getPlaylist: function (id) {
@@ -23,7 +34,8 @@ Page({
       if (res.data.code === 200) {
         this.setData({
           playlist: res.data.playlist
-        })
+        });
+        app.globalData.waitingSongsList = res.data.playlist.trackIds;
       }
     }))
   },

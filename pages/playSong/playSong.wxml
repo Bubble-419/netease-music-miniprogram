@@ -40,11 +40,11 @@
       <!-- 对歌曲的操作区域 -->
       <view class="icons">
         <!-- 上一首 -->
-        <van-icon class="my-icon" class-prefix="my-icon" name="previous" />
+        <van-icon class="my-icon" class-prefix="my-icon" name="previous" bind:tap="prevSong" />
         <!-- 播放/暂停 -->
         <van-icon class="my-icon" class-prefix="my-icon" name="{{isPlaying?'pauseCircle':'playCircle'}}" bind:click="play" />
         <!-- 下一首 -->
-        <van-icon class="my-icon" class-prefix="my-icon" name="next" />
+        <van-icon class="my-icon" class-prefix="my-icon" name="next" bind:tap="nextSong" />
       </view>
       <!-- 进度条 -->
       <view class="progress">
