@@ -112,13 +112,18 @@ module.exports = {
     data.cookie = cookie;
     return request("GET", "/follow", data);
   },
-  // 点赞(需要登录)
-  like: (data) => {
+  // 给评论点赞(需要登录)
+  commentLike: (data) => {
     data.cookie = cookie;
-    return request("GET", "/like", data);
+    return request("GET", "/comment/like", data);
   },
   // 获取评论的楼层回复
   getFloorComments: function (data) {
     return request("GET", "/comment/floor", data);
-  }
+  },
+  // 喜欢/不喜欢歌曲
+  like: function (data) {
+    data.cookie = cookie;
+    return request("GET", "/like", data);
+  },
 }

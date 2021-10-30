@@ -59,7 +59,7 @@ Component({
    */
   methods: {
     like: function () {
-      api.like({
+      api.commentLike({
         id: this.properties.itemId,
         cid: this.properties.cid,
         t: this.properties.liked ? 0 : 1,
