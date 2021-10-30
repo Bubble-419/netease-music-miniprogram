@@ -55,7 +55,7 @@
       <!-- 歌曲附加信息区域 -->
       <view class="icons" hidden="{{showLyrics}}">
         <!-- 喜欢 -->
-        <van-icon name="{{like?'like':'like-o'}}" color="{{like?'#DD001B':'#CCCCCC'}}" size="20px" />
+        <van-icon class="like" name="{{like?'like':'like-o'}}" color="{{like?'#DD001B':'#CCCCCC'}}" size="20px" bind:click="changeLike" />
         <!-- 评论 -->
         <van-icon class="comment" name="comment-o" color="#CCCCCC" info="{{commentNum}}" size="20px" bind:click="goToComments" />
         <!-- 歌曲信息弹窗 -->

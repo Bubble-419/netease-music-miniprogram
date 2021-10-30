@@ -188,6 +188,7 @@ Page({
   prevSong: function () {
     this.switchSong(false);
   },
+
   /**
    * API函数
    */
@@ -309,6 +310,41 @@ Page({
             lyricIndex: 0
           });
         }
+      }
+    })
+  },
+  // 喜欢/不喜欢歌曲
+  changeLike: function () {
+    // 考虑到交互流畅性，先处理视图层，再发送请求
+    let like = this.data.like;
+    this.setData({
+      like: !like
+    });
+    this.animate('.like', [{
+        scale: [1.2, 1.2],
+        ease: 'ease'
+      },
+      {
+        scale: [0.8, 0.8],
+        ease: 'ease'
+      },
+      {
+        scale: [1, 1],
+        ease: 'ease'
+      },
+    ], 1000, () => {
+      this.clearAnimation('.like');
+    });
+    api.like({
+      id: this.data.song.id,
+      like: this.data.like,
+    }).then(res => {
+      if (res.data.code >= 300) {
+        // 处理失败情况
+        console.log('fail');
+        this.setData({
+          like
+        })
       }
     })
   },
