@@ -1,0 +1,17 @@
+<!-- components/songWrapper/songWrapper.wxml -->
+<view class="song-wrapper">
+  <!-- 黑胶播放器 -->
+  <view class="player" hidden="{{showLyrics}}" bind:tap="changePlayer">
+    <image src="../../assets/images/player_bar.png" mode="aspectFill" class="player-bar {{isPlaying?'player-bar-playing':''}}"></image>
+    <image src="../../assets/images/disc.png" mode="aspectFill" class="disc {{isPlaying?'playingImg':'pauseImg'}}"></image>
+    <image src="{{picUrl}}" mode="aspectFill" class="cover {{isPlaying?'playingImg':'pauseImg'}}"></image>
+  </view>
+  <!-- 歌词 -->
+  <scroll-view class="lyrics" hidden="{{!showLyrics}}" scroll-y="{{true}}" scroll-top="{{scrollVal}}" scroll-with-animation="true" enable-flex="true" bind:tap="changePlayer">
+    <view class="lyc-box" >
+      <block wx:for="{{lyrics}}" wx:key="{{item.lid}}">
+        <text class="lyric {{index===lyricIndex?'lyric-hl':''}} {{index===0?'lyric-top':''}} {{index===lyrics.length-1?'lyric-bottom':''}}" id="{{item.lid}}">{{item.lrc}}</text>
+      </block>
+    </view>
+  </scroll-view>
+</view>

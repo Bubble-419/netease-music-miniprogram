@@ -1,0 +1,99 @@
+/* components/songWrapper/songWrapper.wxss */
+@import "../../assets/less/boxBond.less";
+
+.song-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin: 20rpx 0;
+  height: 68vh;
+
+  .player {
+    position: relative;
+
+    image {
+      position: absolute;
+      left: 50%;
+    }
+
+    .box(@width, @height: @width, @mar-left, @z-index) {
+      width: @width;
+      height: @height;
+      margin-left: @mar-left;
+      z-index: @z-index;
+    }
+
+    .player-bar {
+      .box(190rpx, 260rpx, -30rpx, 2);
+      transform: rotate(-25deg);
+      transform-origin: 12px 12px;
+      transition: 1s;
+    }
+
+    .player-bar-playing {
+      transform: rotate(5deg);
+    }
+
+    .disc {
+      .box(420rpx, @mar-left: -220rpx, @z-index: 1);
+      top: 170rpx;
+    }
+
+    .cover {
+      .box(240rpx, @mar-left: -120rpx, @z-index: -1);
+      top: 260rpx;
+    }
+
+    .disc,
+    .cover {
+      animation: rotateCover infinite linear 10s;
+    }
+
+    .playingImg {
+      animation-play-state: running;
+    }
+
+    .pauseImg {
+      animation-play-state: paused;
+    }
+
+    @keyframes rotateCover {
+      from {
+        transform: rotate(0);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  }
+
+
+  .lyrics {
+    @box-val: 100%;
+    width: @box-val;
+    height: @box-val;
+
+    .lyc-box {
+      .flex-box(@flex-jc-prop: flex-start);
+      color: @font-lightgray;
+      font-size: @font-title-size;
+
+      .lyric {
+        margin: 20rpx 0;
+        text-align: center;
+      }
+
+      .lyric-top {
+        margin-top: 25vh;
+      }
+
+      .lyric-bottom {
+        margin-bottom: 25vh;
+      }
+
+      .lyric-hl {
+        color: #FFF;
+      }
+    }
+  }
+}
