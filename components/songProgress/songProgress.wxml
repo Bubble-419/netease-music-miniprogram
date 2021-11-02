@@ -1,0 +1,6 @@
+<!-- components/songProgress.wxml -->
+<view class="progress">
+  <text>{{songCurrShow}}</text>
+  <slider class="progress-bar" min="0" max="{{songDuration}}" value="{{songCurr}}" backgroundColor="#CCCCCC" activeColor="rgba(255,255,255,.8)" block-size="12" bindchange="changeProg" bindtouchstart="sildeProg"></slider>
+  <text>{{songDurationShow}}</text>
+</view>

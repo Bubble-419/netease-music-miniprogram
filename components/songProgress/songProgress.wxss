@@ -1,0 +1,12 @@
+/* components/songProgress.wxss */
+.progress {
+  display: flex;
+  flex-flow: nowrap row;
+  justify-content: center;
+  align-items: center;
+  color: lightgray;
+  font-size: 30rpx;
+}
+.progress .progress-bar {
+  width: 65%;
+}
