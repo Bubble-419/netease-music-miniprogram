@@ -1,5 +1,5 @@
 <!-- 一个歌单专辑用户都通用的组件 -->
-<view class="play-list-item container" bind:tap="onClick">
+<view class="play-list-item" bind:tap="onClick">
   <!-- 封面/头像 -->
   <image class="{{mini?'cover-mini':'cover'}} {{user?'round':''}}" src="{{coverUrl}}" mode="widthFix"></image>
   <view class="{{mini?'mini-info':'item-info'}} {{flex?'flex':''}}">

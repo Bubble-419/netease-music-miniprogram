@@ -4,16 +4,14 @@
   display: flex;
   justify-content: space-between;
   padding: 35rpx;
-  color: #CCCCCC;
-  font-size: 35rpx;
+  color: lightgray;
+  font-size: 36rpx;
 }
-
-.title,
-.isActive {
-  color: #494949;
-  font-weight: 700;
-}
-
-.tab {
+.header .tabs .tab {
   padding: 0 15rpx;
+}
+.header .title,
+.header .isActive {
+  font-size: 36rpx;
+  font-weight: 700;
 }

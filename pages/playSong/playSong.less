@@ -1,0 +1,43 @@
+/* pages/playSong/playSong.wxss */
+@import "../../assets/less/boxBond.less";
+
+.frosted-glass {
+  height: 100vh;
+  background-size: cover;
+}
+
+.container {
+  .container(@bgc: none);
+  .flex-box(@flex-dir-prop: column, @flex-wrap-prop: nowrap, @flex-jc-prop: center, @flex-ai-prop: stretch, );
+  height: 100vh;
+
+  .header {
+    .flex-box(@flex-dir-prop: row, @flex-wrap-prop: nowrap, @flex-jc-prop: space-between, @flex-ai-prop: center, );
+
+    .info {
+      .flex-box(@flex-wrap-prop: nowrap, @flex-jc-prop: flex-start, @flex-ai-prop: center, );
+      .title();
+      color: #fff;
+    }
+  }
+
+  .footer {
+    flex: 1;
+    display: flex;
+    flex-direction: column-reverse;
+    padding-bottom: 50rpx;
+
+    .icons {
+      .flex-box(@flex-dir-prop: row);
+
+      .comment {
+        .van-info {
+          border: none;
+          background-color: @netease-red;
+          right: -10rpx;
+          font-size: @font-small-size;
+        }
+      }
+    }
+  }
+}

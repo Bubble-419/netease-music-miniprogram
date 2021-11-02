@@ -1,4 +1,4 @@
-<view class="song-item container {{playlistItem?'':'border'}}" bind:tap="playSong">
+<view class="song-item {{playlistItem?'':'border'}}" bind:tap="playSong">
   <!-- icon -->
   <view>
     <van-icon name="play-circle-o" size="40rpx" class="right-icon" bind:click="playSong" />

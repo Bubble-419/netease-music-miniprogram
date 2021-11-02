@@ -1,0 +1,24 @@
+@import "../../assets/less/globalVar.less";
+
+.container(@con-margin: 0, @con-padding: 10rpx 35rpx, @border-val: none, @bgc: @box-bgc) {
+  margin: @con-margin;
+  padding: @con-padding;
+  border: @border-val;
+  background-color: @bgc;
+}
+
+.round(@radius-val: @radius-val) {
+  border-radius: @radius-val;
+}
+
+.flex-box(@flex-dir-prop: column, @flex-wrap-prop: nowrap, @flex-jc-prop: space-around, @flex-ai-prop: center, ) {
+  display: flex;
+  flex-flow: @flex-wrap-prop @flex-dir-prop;
+  justify-content: @flex-jc-prop;
+  align-items: @flex-ai-prop;
+}
+
+.title() {
+  font-size: @font-title-size;
+  font-weight: 700;
+}

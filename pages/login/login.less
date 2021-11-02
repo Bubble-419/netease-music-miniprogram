@@ -1,0 +1,38 @@
+/* pages/login/login.wxss */
+@import "../../assets/less/boxBond.less";
+
+page {
+  background-color: @netease-red;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 10rpx 35rpx;
+  height: 100vh;
+
+  .logo {
+    flex: 2;
+    margin: auto;
+
+    .logo-img {
+      width: 200rpx;
+      height: 200rpx;
+      .round();
+    }
+  }
+
+  .login {
+    flex: 1;
+    padding: 0 40rpx;
+    font-weight: 700;
+  }
+
+  .van-button {
+    color: @netease-red;
+  }
+
+  .van-center-enter-to {
+    width: 90%;
+  }
+}

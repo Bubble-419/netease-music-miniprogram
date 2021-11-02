@@ -1,5 +1,4 @@
 const api = require("../../utils/api");
-const util = require("../../utils/util");
 const app = getApp();
 const bam = app.globalData.bam;
 
@@ -18,24 +17,14 @@ Page({
     commentNum: '',
     // 播放状态
     isPlaying: true,
-    // 歌曲总时长（格式为[00:00]）
-    songDurationShow: '00:00',
-    // 歌曲当前秒数（格式为[00:00]）
-    songCurrShow: '00:00',
     // 歌曲总时长（无格式）
     songDuration: '',
     // 歌曲当前秒数（无格式）
     songCurr: '',
-    // 是否显示歌词
-    showLyrics: false,
-    // 歌词数组
-    lyrics: [],
-    // 歌词滚动top值
-    scrollVal: 0,
-    // 当前歌词index
-    lyricIndex: 0,
-    // 控制进度条滑动
-    onSlide: false
+    // 进度条状态
+    onSlide: false,
+    // 歌词状态
+    jumpLyc: false
   },
 
   /**
@@ -45,7 +34,6 @@ Page({
     this.setSongDetail(options.ids);
     this.setLike(options.ids);
     this.setCommentInfo(options.ids);
-    this.setLyrics(options.ids);
   },
 
   /**
@@ -57,9 +45,9 @@ Page({
   /**
    * 页面函数
    */
+
   // 播放或暂停
   play: function () {
-    // const bam = wx.getBackgroundAudioManager();
     if (this.data.isPlaying) {
       bam.pause();
     } else {
@@ -69,30 +57,7 @@ Page({
       isPlaying: !this.data.isPlaying,
     })
   },
-  /**
-   * 对歌词的处理
-   * 响应结果的歌词是一个字符串，最终要转化成一个歌词对象的数组，歌词对象包括lid和lrc两个属性值
-   * lid表示该句歌词对应的秒数，lrc表示这句歌词的字符串
-   * 处理思路：
-   * 1. 利用split方法把歌词按照"\n"分隔成字符串数组，注意数组的最末元素是一个空字符串，需要处理掉
-   * 2. 通过indexOf()获得']'所在下标，分割字符串
-   */
-  formatLyrics: function (lrc) {
-    let lrcArr = lrc.split("\n");
-    lrcArr.pop();
-    let res = [];
-    for (let lyric of lrcArr) {
-      let pos = lyric.indexOf(']');
-      let lid = util.formatLyc(lyric.slice(1, pos));
-      if (pos !== -1) {
-        res.push({
-          lid,
-          lrc: lyric.slice(pos + 1)
-        })
-      }
-    }
-    return res;
-  },
+
   // 对评论徽标的处理
   getCommentNum: function (total) {
     if (total > 999) {
@@ -103,58 +68,40 @@ Page({
       return total;
     };
   },
-  // 点击切换专辑封面和歌词
-  changePlayer: function () {
-    this.setData({
-      showLyrics: !this.data.showLyrics,
-    })
-  },
+
   // 跳转去评论页面
   goToComments: function () {
     wx.navigateTo({
       url: `../comments/comments?itemId=${this.data.song.id}&type=0`,
     });
   },
-  // 拖动进度条,拖动时会有闪回
-  sildeProg: function () {
+
+  // 监听进度条组件的拖动事件
+  onSildeProg: function () {
     this.setData({
       onSlide: true
     });
   },
-  // 改变歌曲进度，可以通过拖动进度条或者滚动歌词触发，传参为歌曲时间的终值
-  changeSongProg: function (songCurr) {
-    // const bam = wx.getBackgroundAudioManager();
+
+  // 监听进度条改变事件
+  onChangeProg: function (e) {
     // 改变音频进度
-    bam.seek(songCurr);
+    bam.seek(e.detail.songCurr);
     this.setData({
-      songCurr
-    });
-    // 改变歌词进度，要使得lyricIndex和scrollVal跳到正确地方
-    let lyricIndex = this.data.lyrics.findIndex((lyc, index, lycs) => {
-      return songCurr < lyc.lid;
-    }) - 1;
-    this.setData({
-      scrollVal: lyricIndex * 34,
-      lyricIndex,
+      songCurr: e.detail.songCurr,
+      // 改变歌词进度
+      jumpLyc: true,
+      onSlide: false
     });
   },
-  // 拖动进度条触发
-  changeProg: function (e) {
-    this.changeSongProg(e.detail.value);
+
+  // 监听歌词跳跃结束事件
+  onJumpEnd: function () {
     this.setData({
-      onSlide: false,
+      jumpLyc: false
     })
   },
-  /**
-   * 处理歌词跳动：参数为当前歌词所在index以及要跳动的行数
-   * 歌词跳动有两种情况：
-   * 1. 随着音乐播放自动跳向下一行
-   * 2. 在歌词界面拉动或者拖动进度条，跳到别的地方，歌词随音乐变化
-   * 如果要做歌词滚动的话，不用scroll-view的事件，要新增一个app那样的播放键，再绑定事件，等有空再写！！
-   */
-  dumpLyric: function (e) {
-    console.log(e);
-  },
+
   // 切歌
   switchSong: function (flag = true) {
     let wsl = app.globalData.waitingSongsList;
@@ -192,6 +139,7 @@ Page({
   /**
    * API函数
    */
+
   // 获取歌曲详情
   setSongDetail: function (ids) {
     api.getSongDetail({
@@ -205,6 +153,7 @@ Page({
       }
     })
   },
+
   /**
    * 对音频管理器实例的处理：
    * 1. 通过 wx.getBackgroundAudioManager 获取全局唯一的音频管理器实例，并给它的src赋值为歌曲的src
@@ -217,7 +166,6 @@ Page({
       id: this.data.song.id
     }).then(res => {
       if (res.data.code === 200 && res.data.data[0].url) {
-        // const bam = wx.getBackgroundAudioManager();
         bam.src = res.data.data[0].url;
         // 给实例的其他属性值赋值
         bam.title = this.data.song.name;
@@ -227,34 +175,11 @@ Page({
         bam.onTimeUpdate(() => {
           this.setData({
             songDuration: bam.duration,
-            songDurationShow: util.formatSec(bam.duration, true),
-            songCurrShow: util.formatSec(bam.currentTime, true),
           });
           if (!this.data.onSlide) {
             this.setData({
               songCurr: bam.currentTime,
             })
-          }
-          /**
-           * 因为currentTime的值基本不可能和歌词秒数对上，所以这里要通过比较判断歌词到哪一行了
-           * 两种情况：
-           * 1. 歌词位于除了最后一行以外其他的行
-           * 2. 歌词已经处于最后一行
-           */
-          // let lyricIndex = this.data.lyricIndex + 1;
-          // if (bam.currentTime > this.data.lyrics[lyricIndex].lid && bam.currentTime < this.data.lyrics[lyricIndex + 1].lid) {
-          //   this.setData({
-          //     lyricIndex,
-          //     scrollVal: this.data.lyricIndex * 34
-          //   })
-          // }
-          if (this.data.lyricIndex < this.data.lyrics.length - 1) {
-            if (bam.currentTime >= this.data.lyrics[this.data.lyricIndex + 1].lid) {
-              this.setData({
-                lyricIndex: this.data.lyricIndex + 1,
-                scrollVal: this.data.lyricIndex * 34
-              })
-            }
           }
         });
         bam.onEnded(() => {
@@ -263,6 +188,7 @@ Page({
       }
     })
   },
+
   // 获取用户喜欢状态
   setLike: function (id) {
     api.getUserLikeList({
@@ -277,42 +203,24 @@ Page({
       }
     })
   },
+
   // 获取歌曲评论信息
   setCommentInfo: function (id) {
+    console.log('setCommentInfo1' + id);
     api.getComments({
       id: id,
       type: 0
     }).then(res => {
       if (res.data.code === 200) {
+        console.log('setCommentInfo2');
         this.setData({
           commentNum: this.getCommentNum(res.data.data.totalCount),
         })
+        console.log(this.data.commentNum);
       }
     })
   },
-  // 获取歌词
-  setLyrics: function (id) {
-    api.getLyrics({
-      id: id
-    }).then(res => {
-      if (res.data.code === 200) {
-        if (res.data.uncollected) {
-          this.setData({
-            lyrics: "暂时没找到相关歌词"
-          });
-        } else if (res.data.nolyric) {
-          this.setData({
-            lyrics: "纯音乐，无歌词"
-          });
-        } else {
-          this.setData({
-            lyrics: this.formatLyrics(res.data.lrc.lyric),
-            lyricIndex: 0
-          });
-        }
-      }
-    })
-  },
+
   // 喜欢/不喜欢歌曲
   changeLike: function () {
     // 考虑到交互流畅性，先处理视图层，再发送请求

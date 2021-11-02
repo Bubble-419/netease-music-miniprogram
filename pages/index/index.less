@@ -1,0 +1,87 @@
+@import "../templates/iconItem/iconItem.wxss";
+@import "../../assets/less/boxBond.less";
+
+.banner-mixin() {
+  .round();
+  overflow: hidden;
+  transform: translateY(0);
+}
+
+.header {
+  .container(0, 20rpx);
+
+  .banner {
+    height: 280rpx;
+    .banner-mixin();
+
+    .banner-item {
+      height: 100%;
+      .banner-mixin();
+
+    }
+
+    .banner-item image {
+      width: 100%;
+      .banner-mixin();
+
+    }
+  }
+
+  .icons {
+    .flex-box(@flex-dir-prop: row);
+    margin-top: 25rpx;
+
+    .icon-item {
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: @light-netease-red;
+        height: 80rpx;
+        width: 80rpx;
+        border-radius: 50%;
+        z-index: -1;
+      }
+    }
+  }
+}
+
+.rec-list {
+  .container();
+  .round();
+
+  .rec-header {
+    .flex-box(@flex-dir-prop: row, @flex-jc-prop: space-between);
+
+    text {
+      .title();
+    }
+  }
+
+  .list {
+    .flex-box(@flex-dir-prop: row, @flex-jc-prop: space-between);
+    white-space: nowrap;
+    padding-top: 20rpx;
+    font-size: @font-middle-size;
+    color: @font-gray;
+
+    .list-item {
+      display: inline-block;
+      padding: 20rpx;
+      width: 220rpx;
+
+      .play-list-item {
+        display: flex;
+        flex-direction: column;
+        white-space: normal;
+      }
+
+      image {
+        .round();
+        width: 220rpx;
+        height: 220rpx;
+      }
+    }
+  }
+}

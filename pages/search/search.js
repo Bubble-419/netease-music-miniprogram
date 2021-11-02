@@ -1,6 +1,7 @@
 // pages/search/search.js
 const api = require("../../utils/api");
 const util = require("../../utils/util");
+const app = getApp();
 
 Page({
 
@@ -197,6 +198,7 @@ Page({
           user: res.data.result.user,
           simQuery: res.data.result.sim_query.sim_querys,
         });
+        app.globalData.waitingSongsList = this.data.song.songs;
       }
     })
   },
@@ -212,17 +214,18 @@ Page({
           case "1":
             this.setData({
               allSongs: this.data.allSongs.concat(res.data.result.songs),
-            })
+            });
+            app.globalData.waitingSongsList = this.data.allSongs;
             break;
           case "1000":
             this.setData({
               allPlayLists: this.data.allPlayLists.concat(res.data.result.playlists),
-            })
+            });
             break;
           case "100":
             this.setData({
               allArtists: this.data.allArtists.concat(res.data.result.artists),
-            })
+            });
             break;
           case "10":
             let al = res.data.result.albums;
@@ -231,18 +234,18 @@ Page({
             }
             this.setData({
               allAlbums: this.data.allAlbums.concat(al),
-            })
+            });
             break;
           case "1002":
             this.setData({
               allUsers: this.data.allUsers.concat(res.data.result.userprofiles),
-            })
+            });
             break;
         }
       }
       this.setData({
         isLoading: false
-      })
+      });
     })
   },
 })

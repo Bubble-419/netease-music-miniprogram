@@ -1,5 +1,7 @@
 {
   "usingComponents": {
-    "van-icon": "@vant/weapp/icon/index"
+    "van-icon": "@vant/weapp/icon/index",
+    "song-progress": "/components/songProgress/songProgress",
+    "song-wrapper": "/components/songWrapper/songWrapper"
   }
 }

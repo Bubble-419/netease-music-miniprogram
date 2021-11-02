@@ -1,0 +1,26 @@
+@import "../../assets/less/boxBond.less";
+
+.song-item {
+  .container(@con-padding: 22rpx);
+  .flex-box(@flex-dir-prop: row-reverse, @flex-jc-prop: flex-start, @flex-ai-prop: center, );
+
+  .song-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 auto;
+    width: 200rpx;
+  }
+
+  .right-icon {
+    padding: 0 10rpx;
+  }
+
+  .index {
+    color: @font-lightgray;
+    width: 80rpx;
+  }
+}
+
+.border {
+  border-top: 1px solid @light-border-color;
+}

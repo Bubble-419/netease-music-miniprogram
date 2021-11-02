@@ -1,0 +1,59 @@
+@import url(assets/less/boxBond.less);
+@import 'miniprogram_npm/@vant/weapp/common/index.wxss';
+@import 'assets/icons/iconfont.wxss';
+
+page {
+  background-color: @page-bgc;
+  color: @font-normal-color;
+  font-size: @font-normal-size;
+}
+
+.round-item {
+  display: inline-block;
+  padding: 12rpx 28rpx;
+  border-radius: @radius-val;
+  background-color: rgba(248, 248, 248, .8);
+}
+
+.text-elli {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.elli {
+  white-space: nowrap;
+  .text-elli();
+}
+
+.multi-elli {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  .text-elli();
+}
+
+.extra {
+  display: flex;
+  font-size: @font-small-size;
+  color: @font-lightgray;
+  white-space: nowrap;
+  padding: 10rpx 0;
+}
+
+.frosted-glass {
+  position: relative;
+  overflow: hidden;
+  z-index: 100;
+
+  &::before {
+    content: '';
+    position: absolute;
+    background: inherit;
+    width: 200%;
+    height: 200%;
+    top: -100rpx;
+    left: -100rpx;
+    filter: blur(50rpx);
+    z-index: -1;
+  }
+}

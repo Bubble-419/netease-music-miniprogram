@@ -6,7 +6,8 @@
     "pages/search/search",
     "pages/playlistDetail/playlistDetail",
     "pages/login/login",
-    "pages/playSong/playSong"
+    "pages/playSong/playSong",
+    "pages/comments/comments"
   ],
   "window": {
     "navigationBarBackgroundColor": "#DD001B",
@@ -36,5 +37,6 @@
       }
     ]
   },
+  "requiredBackgroundModes": ["audio"],
   "sitemapLocation": "sitemap.json"
 }

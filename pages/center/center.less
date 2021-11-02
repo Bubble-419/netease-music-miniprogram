@@ -1,0 +1,31 @@
+/* pages/center/center.wxss */
+@import "../templates/iconItem/iconItem.wxss";
+@import "../../assets/less/boxBond.less";
+
+.container {
+  .container(@bgc: none);
+
+  .cent-container {
+    .container(@con-margin: 20rpx 0, @con-padding: 35rpx 20rpx);
+    .round();
+  }
+
+  .icons {
+    .flex-box(@flex-dir-prop: row, @flex-wrap-prop: wrap, @flex-jc-prop: flex-start);
+
+    .icon-item {
+      width: 145rpx;
+      height: 60rpx;
+    }
+  }
+
+  .fav-lists {
+    display: flex;
+    flex-direction: column;
+
+    .cent-header {
+      .title();
+      margin: 20rpx;
+    }
+  }
+}

@@ -1,0 +1,51 @@
+@import "../../assets/less/boxBond.less";
+
+.play-list-item {
+  .container(@con-padding: 22rpx, @bgc: none);
+  display: flex;
+  align-items: center;
+
+  .cover(@width) {
+    flex: 0 0 @width;
+    border-radius: 20rpx;
+  }
+
+  .cover {
+    .cover(100rpx);
+  }
+
+  .cover-mini {
+    .cover(60rpx);
+  }
+
+  .item-info,
+  .mini-info {
+    display: flex;
+    flex-direction: column;
+    padding: 0 20rpx;
+    overflow: hidden;
+  }
+
+  .item-info,
+  .flex {
+    flex: 1;
+  }
+
+  .round {
+    border-radius: 100%;
+  }
+
+  .title-info {
+    .alias {
+      color: @font-gray;
+    }
+  }
+
+  .tags {
+    display: inline-block;
+    margin: 0 20rpx;
+    font-size: @font-small-size;
+    color: @font-gray;
+    padding: 0;
+  }
+}

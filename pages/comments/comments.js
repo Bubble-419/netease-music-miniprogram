@@ -61,7 +61,6 @@ Page({
       isLoading: true,
       ['comReq.pageNo']: this.data.comReq.pageNo + 1,
     });
-    console.log(this.data.comReq);
     this.setCommentInfo({
       ...this.data.comReq
     })

@@ -1,28 +1,26 @@
 .song-item {
-  display: flex;
-  flex-direction: row-reverse;
-  align-items: center;
-  font-size: 32rpx;
+  margin: 0;
   padding: 22rpx;
+  border: none;
+  background-color: #FFF;
+  display: flex;
+  flex-flow: nowrap row-reverse;
+  justify-content: flex-start;
+  align-items: center;
 }
-
-.border {
-  border-top: 1px solid rgba(240, 240, 240, .8);
-}
-
-.song-info {
+.song-item .song-info {
   display: flex;
   flex-direction: column;
   flex: 1 0 auto;
   width: 200rpx;
 }
-
-.right-icon {
+.song-item .right-icon {
   padding: 0 10rpx;
 }
-
-.index {
-  font-size: 32rpx;
+.song-item .index {
   color: lightgray;
   width: 80rpx;
+}
+.border {
+  border-top: 1px solid #dcdcdc;
 }

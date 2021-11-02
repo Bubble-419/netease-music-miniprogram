@@ -1,99 +1,99 @@
-@import "../templates/iconItem/iconItem.wxss";
-
-page {
-  background-color: #F8F8F8;
+.icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10rpx;
+  font-size: 30rpx;
+  color: gray;
 }
-
+.icon-item {
+  position: relative;
+  height: 80rpx;
+  width: 80rpx;
+  z-index: 100;
+}
 .header {
-  background-color: #fff;
-  border-radius: 30rpx;
+  margin: 0;
   padding: 20rpx;
+  border: none;
+  background-color: #FFF;
 }
-
-swiper {
+.header .banner {
   height: 280rpx;
   border-radius: 30rpx;
   overflow: hidden;
   transform: translateY(0);
 }
-
-.banner-item {
+.header .banner .banner-item {
   height: 100%;
-  overflow: hidden;
   border-radius: 30rpx;
+  overflow: hidden;
   transform: translateY(0);
 }
-
-.banner-item image {
+.header .banner .banner-item image {
   width: 100%;
-  overflow: hidden;
   border-radius: 30rpx;
+  overflow: hidden;
+  transform: translateY(0);
 }
-
-.icons {
+.header .icons {
   display: flex;
+  flex-flow: nowrap row;
   justify-content: space-around;
   align-items: center;
   margin-top: 25rpx;
 }
-
-.icon-item::after {
+.header .icons .icon-item::after {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
-  background-color: rgba(221, 0, 27, .8);
+  background-color: #dd001b;
   height: 80rpx;
   width: 80rpx;
   border-radius: 50%;
   z-index: -1;
 }
-
 .rec-list {
-  margin-top: 30rpx;
+  margin: 20rpx;
   padding: 25rpx 35rpx;
-  background-color: #fff;
+  border: none;
+  background-color: #FFF;
   border-radius: 30rpx;
 }
-
-.rec-header {
+.rec-list .rec-header {
   display: flex;
+  flex-flow: nowrap row;
   justify-content: space-between;
   align-items: center;
 }
-
-.rec-header text {
+.rec-list .rec-header text {
+  font-size: 36rpx;
   font-weight: 700;
-  font-size: 38rpx;
 }
-
 .rec-list .list {
   display: flex;
+  flex-flow: nowrap row;
   justify-content: space-between;
   align-items: center;
   white-space: nowrap;
   padding-top: 20rpx;
+  font-size: 30rpx;
+  color: #666;
 }
-
-.list .list-item {
+.rec-list .list .list-item {
   display: inline-block;
   padding: 20rpx;
   width: 220rpx;
 }
-
-.list-item .play-list-item {
+.rec-list .list .list-item .play-list-item {
   display: flex;
   flex-direction: column;
   white-space: normal;
 }
-
-.list-item image {
+.rec-list .list .list-item image {
+  border-radius: 30rpx;
   width: 220rpx;
   height: 220rpx;
-  border-radius: 30rpx;
-}
-
-.list-item text {
-  font-size: 30rpx;
-  color: gray;
 }

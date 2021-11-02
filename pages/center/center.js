@@ -1,4 +1,5 @@
 const api = require("../../utils/api");
+const app = getApp();
 
 // pages/center/center.js
 Page({
@@ -6,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    uid: wx.getStorageSync("user").uid,
+    uid: app.globalData.uid,
     profile: {},
     icons: [{
         iconUrl: '../../assets/images/download.png',

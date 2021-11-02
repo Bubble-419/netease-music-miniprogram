@@ -1,36 +1,48 @@
 /* pages/center/center.wxss */
-@import "../templates/iconItem/iconItem.wxss";
-
-page {
-  background-color: #F8F8F8;
-}
-
-.cent-container {
-  padding: 35rpx 20rpx;
-  border-radius: 30rpx;
-  background-color: #fff;
-  margin: 20rpx 0;
-}
-
-.icons {
+.icon {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10rpx;
+  font-size: 30rpx;
+  color: gray;
+}
+.icon-item {
+  position: relative;
+  height: 80rpx;
+  width: 80rpx;
+  z-index: 100;
+}
+.container {
+  margin: 0;
+  padding: 10rpx 35rpx;
+  border: none;
+  background-color: none;
+}
+.container .cent-container {
+  margin: 20rpx 0;
+  padding: 35rpx 20rpx;
+  border: none;
+  background-color: #FFF;
+  border-radius: 30rpx;
+}
+.container .icons {
+  display: flex;
+  flex-flow: wrap row;
+  justify-content: flex-start;
   align-items: center;
 }
-
-.icon-item {
+.container .icons .icon-item {
   width: 145rpx;
   height: 60rpx;
 }
-
-.fav-lists {
+.container .fav-lists {
   display: flex;
   flex-direction: column;
 }
-
-.cent-header {
-  font-size: 35rpx;
+.container .fav-lists .cent-header {
+  font-size: 36rpx;
   font-weight: 700;
-  color: #494949;
   margin: 20rpx;
 }

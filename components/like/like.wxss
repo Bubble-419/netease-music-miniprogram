@@ -1,14 +1,11 @@
 /* components/like/like.wxss */
 .like {
-  font-size: 35rpx;
-  color: #CCCCCC;
+  font-size: 36rpx;
+  color: lightgray;
 }
-
-.count {
-  font-size: 32rpx;
+.like .count {
   padding: 5rpx;
 }
-
-.liked {
+.like .liked {
   color: #DD001B;
 }

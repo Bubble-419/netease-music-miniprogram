@@ -2,34 +2,29 @@
 page {
   background-color: #DD001B;
 }
-
 .container {
   display: flex;
   flex-direction: column;
+  padding: 10rpx 35rpx;
   height: 100vh;
 }
-
-.logo {
+.container .logo {
   flex: 2;
   margin: auto;
 }
-
-.logo-img {
+.container .logo .logo-img {
   width: 200rpx;
   height: 200rpx;
   border-radius: 30rpx;
 }
-
-.login {
+.container .login {
   flex: 1;
   padding: 0 40rpx;
   font-weight: 700;
 }
-
-.van-button {
+.container .van-button {
   color: #DD001B;
 }
-
-.van-center-enter-to {
+.container .van-center-enter-to {
   width: 90%;
 }

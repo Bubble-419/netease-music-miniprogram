@@ -9,7 +9,7 @@
       </view>
       <view class="info">
         <text class="title">{{playlist.name}}</text>
-        <play-list-item user="{{true}}" itemId="{{playlist.creator.userId}}" coverUrl="{{playlist.creator.avatarUrl}}" titleInfo="{{playlist.creator.nickname}}">
+        <play-list-item user="{{true}}" mini="true" itemId="{{playlist.creator.userId}}" coverUrl="{{playlist.creator.avatarUrl}}" titleInfo="{{playlist.creator.nickname}}">
           <follow itemId="{{playlist.creator.userId}}" mini="true" followed="{{playlist.creator.followed}}" wx:if="{{playlist.creator.userId}}"></follow>
         </play-list-item>
         <text class="desc multi-elli" wx:if="{{playlist.description!=null}}">{{playlist.description}}</text>
@@ -22,17 +22,13 @@
       <van-icon name="like-o" />
       <text>{{playlist.subscribedCount}}</text>
     </view>
-    <view class="btn">
-      <view class="btn">
-        <van-icon name="comment-o" />
-        <text>{{playlist.commentCount}}</text>
-      </view>
+    <view class="btn" bind:tap="goToComments">
+      <van-icon name="comment-o" />
+      <text>{{playlist.commentCount}}</text>
     </view>
     <view class="btn">
-      <view class="btn">
-        <van-icon name="share-o" />
-        <text>{{playlist.shareCount}}</text>
-      </view>
+      <van-icon name="share-o" />
+      <text>{{playlist.shareCount}}</text>
     </view>
   </view>
 </view>
