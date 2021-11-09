@@ -24,7 +24,8 @@ Component({
     playlistItem: {
       type: Boolean,
       value: false,
-    }
+    },
+    tag: '',
   },
   methods: {
     playSong: function () {

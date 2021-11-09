@@ -9,6 +9,10 @@
     <!-- 歌曲名 -->
     <text class="elli">{{name}}</text>
     <view class="extra">
+      <!-- 标签信息 -->
+      <view wx:if="{{tag}}">
+        <text class="tag round-item">{{tag}}</text>
+      </view>
       <!-- 歌手名 -->
       <block wx:for="{{artists}}">
         <text>{{item.name}}</text>
