@@ -1,4 +1,13 @@
 module.exports = {
+  // 计算歌单播放数
+  getPlayCount: (num) => {
+    let n = Math.round(num).toString();
+    if (n.length > 8) {
+      return n.slice(0, -8) + '亿';
+    } else if (n.length > 4) {
+      return n.slice(0, -4) + '万';
+    } else return '';
+  },
   // 转换时间格式
   getPublishTime: (num) => {
     let d = new Date(num);
