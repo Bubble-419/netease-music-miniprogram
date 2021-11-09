@@ -126,4 +126,27 @@ module.exports = {
     data.cookie = cookie;
     return request("GET", "/like", data);
   },
+  // 获取私人fm（需登录）
+  getFM: function (data) {
+    data.cookie = cookie;
+    return request("GET", "/personal_fm", data);
+  },
+  // 获取日推（需登录）
+  getDailyRec: function (data) {
+    data.cookie = cookie;
+    return request("GET", "/recommend/songs", data);
+  },
+  // 网友精选歌单
+  getHotPlaylist: function (data) {
+    return request("GET", "/top/playlist", data);
+  },
+  // 日推歌单（需登录）
+  getDailyList: function (data) {
+    data.cookie = cookie;
+    return request("GET", "/recommend/resource", data);
+  },
+  // 根据类别获取歌单
+  getplayistByTag: function (data) {
+    return request("GET", "/top/playlist/highquality", data);
+  },
 }
