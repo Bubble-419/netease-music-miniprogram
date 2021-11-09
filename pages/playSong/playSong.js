@@ -11,10 +11,6 @@ Page({
   data: {
     // 歌曲信息
     song: {},
-    // 是否喜欢歌曲
-    like: false,
-    //歌曲评论数展示
-    commentNum: '',
     // 播放状态
     isPlaying: true,
     // 歌曲总时长（无格式）
@@ -32,8 +28,6 @@ Page({
    */
   onLoad: function (options) {
     this.setSongDetail(options.ids);
-    this.setLike(options.ids);
-    this.setCommentInfo(options.ids);
   },
 
   /**
@@ -56,24 +50,6 @@ Page({
     this.setData({
       isPlaying: !this.data.isPlaying,
     })
-  },
-
-  // 对评论徽标的处理
-  getCommentNum: function (total) {
-    if (total > 999) {
-      return '999+';
-    } else if (total > 9999) {
-      return '1w+';
-    } else {
-      return total;
-    };
-  },
-
-  // 跳转去评论页面
-  goToComments: function () {
-    wx.navigateTo({
-      url: `../comments/comments?itemId=${this.data.song.id}&type=0`,
-    });
   },
 
   // 监听进度条组件的拖动事件
@@ -102,15 +78,15 @@ Page({
     })
   },
 
-  // 切歌
-  switchSong: function (flag = true) {
+  // 监听切歌事件
+  onSwitchSong: function (e) {
     let wsl = app.globalData.waitingSongsList;
     let pos = wsl.findIndex(s => {
       return s.id === this.data.song.id
     });
     let target = pos + 1;
     // true:next false:prev
-    if (flag) {
+    if (e.detail.flag) {
       // 当前已经是最后一首时，循环播放
       if (target > wsl.length - 1) {
         target = 0;
@@ -126,14 +102,6 @@ Page({
     curPages[curPages.length - 1].onLoad({
       ids: wsl[target].id
     });
-  },
-  // 下一首
-  nextSong: function () {
-    this.switchSong();
-  },
-  // 上一首
-  prevSong: function () {
-    this.switchSong(false);
   },
 
   /**
@@ -183,76 +151,12 @@ Page({
           }
         });
         bam.onEnded(() => {
-          this.nextSong();
+          this.onSwitchSong({
+            detail: {
+              flag: true
+            }
+          });
         });
-      }
-    })
-  },
-
-  // 获取用户喜欢状态
-  setLike: function (id) {
-    api.getUserLikeList({
-      uid: wx.getStorageSync('user').uid
-    }).then(res => {
-      if (res.data.code === 200) {
-        if (res.data.ids.includes(parseInt(id))) {
-          this.setData({
-            like: true
-          })
-        }
-      }
-    })
-  },
-
-  // 获取歌曲评论信息
-  setCommentInfo: function (id) {
-    console.log('setCommentInfo1' + id);
-    api.getComments({
-      id: id,
-      type: 0
-    }).then(res => {
-      if (res.data.code === 200) {
-        console.log('setCommentInfo2');
-        this.setData({
-          commentNum: this.getCommentNum(res.data.data.totalCount),
-        })
-        console.log(this.data.commentNum);
-      }
-    })
-  },
-
-  // 喜欢/不喜欢歌曲
-  changeLike: function () {
-    // 考虑到交互流畅性，先处理视图层，再发送请求
-    let like = this.data.like;
-    this.setData({
-      like: !like
-    });
-    this.animate('.like', [{
-        scale: [1.2, 1.2],
-        ease: 'ease'
-      },
-      {
-        scale: [0.8, 0.8],
-        ease: 'ease'
-      },
-      {
-        scale: [1, 1],
-        ease: 'ease'
-      },
-    ], 1000, () => {
-      this.clearAnimation('.like');
-    });
-    api.like({
-      id: this.data.song.id,
-      like: this.data.like,
-    }).then(res => {
-      if (res.data.code >= 300) {
-        // 处理失败情况
-        console.log('fail');
-        this.setData({
-          like
-        })
       }
     })
   },

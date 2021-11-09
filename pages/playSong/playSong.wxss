@@ -4,17 +4,15 @@
   background-size: cover;
 }
 .container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+.container .header {
   margin: 0;
   padding: 10rpx 35rpx;
   border: none;
   background-color: none;
-  display: flex;
-  flex-flow: nowrap column;
-  justify-content: center;
-  align-items: stretch;
-  height: 100vh;
-}
-.container .header {
   display: flex;
   flex-flow: nowrap row;
   justify-content: space-between;
@@ -29,21 +27,10 @@
   font-weight: 700;
   color: #fff;
 }
+.container .play {
+  flex: 2;
+  height: 100%;
+}
 .container .footer {
   flex: 1;
-  display: flex;
-  flex-direction: column-reverse;
-  padding-bottom: 50rpx;
-}
-.container .footer .icons {
-  display: flex;
-  flex-flow: nowrap row;
-  justify-content: space-around;
-  align-items: center;
-}
-.container .footer .icons .comment .van-info {
-  border: none;
-  background-color: #DD001B;
-  right: -10rpx;
-  font-size: 25rpx;
 }

@@ -7,11 +7,12 @@
 }
 
 .container {
-  .container(@bgc: none);
-  .flex-box(@flex-dir-prop: column, @flex-wrap-prop: nowrap, @flex-jc-prop: center, @flex-ai-prop: stretch, );
+  display: flex;
+  flex-direction: column;
   height: 100vh;
 
   .header {
+    .container(@bgc: none);
     .flex-box(@flex-dir-prop: row, @flex-wrap-prop: nowrap, @flex-jc-prop: space-between, @flex-ai-prop: center, );
 
     .info {
@@ -21,23 +22,12 @@
     }
   }
 
+  .play {
+    flex: 2;
+    height: 100%;
+  }
+
   .footer {
     flex: 1;
-    display: flex;
-    flex-direction: column-reverse;
-    padding-bottom: 50rpx;
-
-    .icons {
-      .flex-box(@flex-dir-prop: row);
-
-      .comment {
-        .van-info {
-          border: none;
-          background-color: @netease-red;
-          right: -10rpx;
-          font-size: @font-small-size;
-        }
-      }
-    }
   }
 }
