@@ -9,7 +9,7 @@ page {
   background-color: #FFF;
 }
 .container .title {
-  font-size: 36rpx;
+  font-size: 35rpx;
   font-weight: 700;
   margin: 0 20rpx 20rpx 0;
   background-color: rgba(248, 248, 248, 0.4);
@@ -48,7 +48,7 @@ page {
   padding: 10rpx;
 }
 .hot .hot-list .hot-item .index {
-  font-size: 36rpx;
+  font-size: 35rpx;
   font-weight: 700;
   color: lightgray;
   width: 60rpx;
@@ -74,14 +74,14 @@ page {
 .res-container {
   display: flex;
   flex-direction: column;
-  margin: 0;
+  margin: 30rpx 0;
   padding: 20rpx;
   border: 1px solid #dcdcdc;
   background-color: #FFF;
   border-radius: 30rpx;
 }
 .res-container .res-header {
-  font-size: 36rpx;
+  font-size: 35rpx;
   font-weight: 700;
   margin: 20rpx;
 }
@@ -94,6 +94,7 @@ page {
   padding: 35rpx 0;
   border: 1px solid #dcdcdc;
   background-color: #FFF;
+  border-radius: 30rpx;
   font-size: 30rpx;
 }
 .res-container .sim-query {

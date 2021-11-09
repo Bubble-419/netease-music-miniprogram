@@ -80,7 +80,7 @@ page {
 .res-container {
   display: flex;
   flex-direction: column;
-  .container(@con-padding: 20rpx, @border-val: 1px solid @light-border-color);
+  .container(@con-margin: 30rpx 0, @con-padding: 20rpx, @border-val: 1px solid @light-border-color);
   .round();
 
   .res-header {
@@ -91,6 +91,7 @@ page {
   .more-info {
     .flex-box(@flex-dir-prop: row, @flex-jc-prop: center);
     .container(@con-padding: 35rpx 0, @border-val: 1px solid @light-border-color);
+    .round();
     font-size: @font-middle-size;
   }
 

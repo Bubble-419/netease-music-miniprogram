@@ -199,6 +199,9 @@ Page({
           simQuery: res.data.result.sim_query.sim_querys,
         });
         app.globalData.waitingSongsList = this.data.song.songs;
+        this.setData({
+          isLoading: false
+        })
       }
     })
   },
