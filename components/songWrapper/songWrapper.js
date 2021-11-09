@@ -3,14 +3,23 @@ const api = require("../../utils/api");
 const util = require("../../utils/util");
 
 Component({
+  options: {
+    addGlobalClass: true
+  },
   /**
    * 组件的属性列表
    */
   properties: {
+    // 判断是歌曲还是私人fm
+    flag: '',
     // 歌曲id
     sid: 0,
     // 专辑封面
     picUrl: '',
+    // 歌曲名
+    songName: '',
+    // 歌手
+    ar: [],
     // 播放状态
     isPlaying: true,
     // 歌曲当前秒数（无格式）
@@ -40,10 +49,13 @@ Component({
     },
     'songCurr': function (val) {
       /**
-       * 因为currentTime的值基本不可能和歌词秒数对上，所以这里要通过比较判断歌词到哪一行了
-       * 两种情况：
+       * 通过监听songCurr（即bam中的currentTime）来改变歌词跳动的行数，因为currentTime的值基本不可能和歌词秒数对上，所以这里要通过比较判断歌词到哪一行了
+       * 歌词位置有两种情况：
        * 1. 歌词位于除了最后一行以外其他的行
        * 2. 歌词已经处于最后一行
+       * 处理歌词跳动，歌词跳动有两种情况：
+       * 1. 随着音乐播放自动跳向下一行
+       * 2. 在歌词界面拉动或者拖动进度条，跳到别的地方，歌词随音乐变化
        */
       if (val) {
         // 歌词跳去某一句
@@ -69,9 +81,9 @@ Component({
     },
   },
   lifetimes: {
-    attached: function () {
-      this.setLyrics(this.properties.sid);
-    }
+    // attached: function () {
+    //   this.setLyrics(this.properties.sid);
+    // }
   },
 
   /**
@@ -85,10 +97,7 @@ Component({
       })
     },
     /**
-     * 处理歌词跳动：参数为当前歌词所在index以及要跳动的行数
-     * 歌词跳动有两种情况：
-     * 1. 随着音乐播放自动跳向下一行
-     * 2. 在歌词界面拉动或者拖动进度条，跳到别的地方，歌词随音乐变化
+
      * 如果要做歌词滚动的话，不用scroll-view的事件，要新增一个app那样的播放键，再绑定事件，等有空再写！！
      */
     jumpLyric: function (e) {

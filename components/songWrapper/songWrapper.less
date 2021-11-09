@@ -5,9 +5,10 @@
   display: flex;
   flex-direction: column;
   margin: 20rpx 0;
-  height: 68vh;
+  height: 66vh;
 
   .player {
+    flex: 1;
     position: relative;
 
     image {
@@ -65,16 +66,46 @@
         transform: rotate(360deg);
       }
     }
+
+
+  }
+
+  .fm-player {
+    .fm-box {
+      .flex-box(@flex-jc-prop: center, @flex-ai-prop: center);
+
+      .fm-cover {
+        width: 500rpx;
+        height: 500rpx;
+        padding: 30rpx 0;
+
+        image {
+          width: 100%;
+          height: 100%;
+          .round();
+          transition: 10s;
+        }
+      }
+
+      .info {
+        .flex-box(@flex-wrap-prop: nowrap, @flex-jc-prop: flex-start, @flex-ai-prop: center, );
+        .title();
+        margin: 30rpx 0;
+        color: #fff;
+      }
+    }
+
   }
 
 
   .lyrics {
     @box-val: 100%;
-    width: @box-val;
+    width: @box-val+2%;
     height: @box-val;
 
     .lyc-box {
       .flex-box(@flex-jc-prop: flex-start);
+      padding-right: 2%;
       color: @font-lightgray;
       font-size: @font-title-size;
 
@@ -96,4 +127,5 @@
       }
     }
   }
+
 }

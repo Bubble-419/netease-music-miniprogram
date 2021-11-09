@@ -3,9 +3,10 @@
   display: flex;
   flex-direction: column;
   margin: 20rpx 0;
-  height: 68vh;
+  height: 66vh;
 }
 .song-wrapper .player {
+  flex: 1;
   position: relative;
 }
 .song-wrapper .player image {
@@ -56,8 +57,35 @@
     transform: rotate(360deg);
   }
 }
-.song-wrapper .lyrics {
+.song-wrapper .fm-player .fm-box {
+  display: flex;
+  flex-flow: nowrap column;
+  justify-content: center;
+  align-items: center;
+}
+.song-wrapper .fm-player .fm-box .fm-cover {
+  width: 500rpx;
+  height: 500rpx;
+  padding: 30rpx 0;
+}
+.song-wrapper .fm-player .fm-box .fm-cover image {
   width: 100%;
+  height: 100%;
+  border-radius: 30rpx;
+  transition: 10s;
+}
+.song-wrapper .fm-player .fm-box .info {
+  display: flex;
+  flex-flow: nowrap column;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 35rpx;
+  font-weight: 700;
+  margin: 30rpx 0;
+  color: #fff;
+}
+.song-wrapper .lyrics {
+  width: 102%;
   height: 100%;
 }
 .song-wrapper .lyrics .lyc-box {
@@ -65,6 +93,7 @@
   flex-flow: nowrap column;
   justify-content: flex-start;
   align-items: center;
+  padding-right: 2%;
   color: lightgray;
   font-size: 35rpx;
 }
