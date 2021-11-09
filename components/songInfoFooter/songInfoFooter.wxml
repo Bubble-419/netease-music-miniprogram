@@ -1,2 +1,41 @@
-<!--components/songInfoFooter/songInfoFooter.wxml-->
-<text>components/songInfoFooter/songInfoFooter.wxml</text>
+<!-- components/songInfoFooter/songInfoFooter.wxml -->
+<!-- 歌曲页面的底部区域 -->
+<view class="footer" wx:if="{{flag==='song'}}">
+  <!-- 歌曲附加信息区域 -->
+  <view class="icons" hidden="{{showLyrics}}">
+    <!-- 喜欢 -->
+    <van-icon class="like" name="{{like?'like':'like-o'}}" color="{{like?'#DD001B':'#CCCCCC'}}" size="20px" bind:click="changeLike" />
+    <!-- 评论 -->
+    <van-icon class="comment" name="comment-o" color="#CCCCCC" info="{{commentNum}}" size="20px" bind:click="goToComments" />
+    <!-- 歌曲信息弹窗 -->
+    <van-icon name="ellipsis" color="#CCCCCC" size="20px" />
+  </view>
+  <!-- 进度条 -->
+  <song-progress songDuration="{{songDuration}}" songCurr="{{songCurr}}" bind:sildeProg="sildeProg" bind:changeSongProg="changeProg"></song-progress>
+  <!-- 对歌曲的操作区域 -->
+  <view class="icons">
+    <!-- 上一首 -->
+    <van-icon class="my-icon" class-prefix="my-icon" name="previous" bind:tap="prevSong" />
+    <!-- 播放/暂停 -->
+    <van-icon class="my-icon" class-prefix="my-icon" name="{{isPlaying?'pauseCircle':'playCircle'}}" bind:click="play" />
+    <!-- 下一首 -->
+    <van-icon class="my-icon" class-prefix="my-icon" name="next" bind:tap="nextSong" />
+  </view>
+</view>
+<!-- fm页面的底部区域 -->
+<view class="footer" wx:if="{{flag==='fm'}}">
+  <!-- 进度条 -->
+  <song-progress songDuration="{{songDuration}}" songCurr="{{songCurr}}" bind:sildeProg="sildeProg" bind:changeSongProg="changeProg"></song-progress>
+  <view class="icons">
+    <!-- 不喜欢 -->
+    <van-icon name="delete-o" bind:tap="nextSong" color="#CCCCCC" size="55rpx" />
+    <!-- 喜欢 -->
+    <van-icon class="like" name="{{like?'like':'like-o'}}" color="{{like?'#DD001B':'#CCCCCC'}}" size="55rpx" bind:click="changeLike" />
+    <!-- 播放/暂停 -->
+    <van-icon class="my-icon" class-prefix="my-icon" name="{{isPlaying?'pauseCircle':'playCircle'}}" bind:click="play" />
+    <!-- 下一首 -->
+    <van-icon class="my-icon" class-prefix="my-icon" name="next" bind:tap="nextSong" />
+    <!-- 评论 -->
+    <van-icon class="comment" name="comment-o" color="#CCCCCC" info="{{commentNum}}" size="55rpx" bind:click="goToComments" />
+  </view>
+</view>

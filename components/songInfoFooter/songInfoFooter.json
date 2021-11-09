@@ -1,4 +1,7 @@
 {
   "component": true,
-  "usingComponents": {}
+  "usingComponents": {
+    "song-progress": "/components/songProgress/songProgress",
+    "van-icon": "@vant/weapp/icon/index"
+  }
 }

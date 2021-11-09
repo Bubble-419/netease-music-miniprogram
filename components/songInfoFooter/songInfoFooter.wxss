@@ -1,1 +1,23 @@
 /* components/songInfoFooter/songInfoFooter.wxss */
+.footer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 20rpx 35rpx;
+  border: none;
+  background-color: none;
+  height: 100rpx;
+}
+.footer .icons {
+  display: flex;
+  flex-flow: nowrap row;
+  justify-content: space-around;
+  align-items: center;
+}
+.footer .icons .comment .van-info {
+  border: none;
+  background-color: #DD001B;
+  right: -10rpx;
+  font-size: 25rpx;
+}
