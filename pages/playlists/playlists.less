@@ -1,0 +1,28 @@
+/* pages/playlists/playlists.wxss */
+@import "../../assets/less/boxBond.less";
+
+page {
+  background-color: #FFF;
+}
+
+.container {
+  .container(@con-margin: 20rpx 0, @con-padding: 10rpx 15rpx);
+
+  .title {
+    .title();
+    margin: 15rpx 0
+  }
+
+  .list-box {
+    .flex-box(@flex-dir-prop: row, @flex-wrap-prop: wrap, @flex-jc-prop: flex-start);
+
+    .list-item {
+      padding: 10rpx;
+    }
+  }
+}
+
+.more {
+  .flex-box(@flex-jc-prop: center);
+  margin: 20rpx 0;
+}

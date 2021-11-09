@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "playlist-wrapper": "/components/playlistWrapper/playlistWrapper",
+    "van-tab": "@vant/weapp/tab/index",
+    "van-tabs": "@vant/weapp/tabs/index",
+    "play-list-item": "/components/playListItem/playListItem",
+    "loading": "/components/loading/loading"
+  },
+  "navigationBarTitleText": "歌单广场"
+}

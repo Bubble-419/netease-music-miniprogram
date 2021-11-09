@@ -1,0 +1,42 @@
+<!-- pages/playlists/playlists.wxml -->
+<van-tabs sticky color="#DD001B" swipeable lazy-render active="{{tabsActive}}" bind:change="onChangeTab">
+  <block wx:for="{{tags}}" wx:key="*this">
+    <van-tab name="{{item}}" title="{{item}}">
+      <!-- 推荐页 -->
+      <view class="container" wx:if="{{item==='推荐'}}">
+        <view class="rec-container">
+          <view class="title">今日达人推荐</view>
+          <view class="list-box">
+            <block wx:for="{{hotplayList}}" wx:key="item.id">
+              <view class="list-item">
+                <playlist-wrapper item="{{item}}"></playlist-wrapper>
+              </view>
+            </block>
+          </view>
+        </view>
+        <view class="rec-container">
+          <view class="title">你的宝藏歌单</view>
+          <view class="list-box">
+            <block wx:for="{{dailyPlaylist}}" wx:key="item.id">
+              <view class="list-item">
+                <playlist-wrapper item="{{item}}"></playlist-wrapper>
+              </view>
+            </block>
+          </view>
+        </view>
+      </view>
+      <!-- 其他页 -->
+      <view class="container" wx:else>
+        <view class="list-box">
+          <block wx:for="{{tagPlaylist}}" wx:key="item.id">
+            <view class="list-item">
+              <playlist-wrapper item="{{item}}"></playlist-wrapper>
+            </view>
+          </block>
+        </view>
+      </view>
+      <loading isLoading="{{isLoading}}"></loading>
+      <view class="more" wx:if="{{!hasMore&&!isLoading}}">暂时没有更多数据了</view>
+    </van-tab>
+  </block>
+</van-tabs>
