@@ -21,7 +21,9 @@
   <!-- 圆形入口列表 -->
   <view class="icons">
     <block wx:for="{{homeIcons}}" wx:key="{{item.id}}">
-      <template is="iconItem" data="{{...item}}"></template>
+      <view class="wrap" data-ind="{{index}}" bind:tap="goToIcon">
+        <template is="iconItem" data="{{...item}}"></template>
+      </view>
     </block>
   </view>
   <!-- 圆形入口列表结束 -->
@@ -37,11 +39,14 @@
   <!-- 歌单列表 -->
   <scroll-view class="list" scroll-x="true">
     <block wx:for="{{playList}}" wx:key="item.id">
-      <view class="list-item">
+      <!-- <view class="list-item">
         <view class="play-list-item" data-id="{{item.id}}" bind:tap="goToDetail">
           <image class="" src="{{item.picUrl}}" mode="aspectFill" lazy-load="false"></image>
           <text class="multi-elli">{{item.name}}</text>
         </view>
+      </view> -->
+      <view class="list-item">
+        <playlist-wrapper item="{{item}}"></playlist-wrapper>
       </view>
     </block>
   </scroll-view>

@@ -1,0 +1,9 @@
+<!-- components/playlistWrapper/playlistWrapper.wxml -->
+<view class="playlist-wrapper" data-id="{{item.id}}" bind:tap="goToDetail">
+  <view class="tag round-item song-tag" wx:if="{{tag}}">
+    <van-icon name="play-circle-o" />
+    {{tag}}
+  </view>
+  <image src="{{item.picUrl || item.coverImgUrl}}" mode="aspectFill" lazy-load="false"></image>
+  <text class="multi-elli">{{item.name}}</text>
+</view>

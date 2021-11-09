@@ -33,11 +33,18 @@ Page({
       url: '../search/search',
     });
   },
-  // 跳转歌单详情页面
-  goToDetail: function (e) {
-    wx.navigateTo({
-      url: '../playlistDetail/playlistDetail?id=' + e.currentTarget.dataset.id,
-    });
+  // 从圆形入口跳转页面
+  goToIcon: function (e) {
+    let index = e.currentTarget.dataset.ind;
+    if (index === 1) {
+      wx.switchTab({
+        url: this.data.homeIcons[index].url,
+      });
+    } else {
+      wx.navigateTo({
+        url: this.data.homeIcons[index].url,
+      });
+    }
   },
 
   /**
@@ -68,10 +75,15 @@ Page({
   setHomeicons: function () {
     api.getHomeicons({}).then(res => {
       if (res.data.code === 200) {
-        const iconList = res.data.data;
-        iconList.length = 4;
+        const homeIcons = res.data.data;
+        homeIcons.length = 4;
+        homeIcons[0].url = '../playlistDetail/playlistDetail?daily=true';
+        homeIcons[1].url = '/pages/personalFM/personalFM';
+        homeIcons[2].url = '../playlists/playlists';
+        homeIcons[3].url = '../rankList/rankList';
+        console.log(homeIcons);
         this.setData({
-          homeIcons: iconList,
+          homeIcons
         })
       }
     })

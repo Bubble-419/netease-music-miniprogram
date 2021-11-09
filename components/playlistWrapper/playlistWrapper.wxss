@@ -1,0 +1,20 @@
+/* components/playlistWrapper/playlistWrapper.wxss */
+.playlist-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  white-space: normal;
+  width: 220rpx;
+  height: 300rpx;
+}
+.playlist-wrapper image {
+  border-radius: 30rpx;
+  width: 220rpx;
+  height: 220rpx;
+}
+.playlist-wrapper .song-tag {
+  position: absolute;
+  right: -5rpx;
+  top: 10rpx;
+  padding: 7rpx;
+}
