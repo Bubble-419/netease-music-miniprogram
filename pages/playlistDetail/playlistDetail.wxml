@@ -9,7 +9,7 @@
       </view>
       <view class="info">
         <text class="title">{{playlist.name}}</text>
-        <play-list-item user="{{true}}" mini="true" itemId="{{playlist.creator.userId}}" coverUrl="{{playlist.creator.avatarUrl}}" titleInfo="{{playlist.creator.nickname}}">
+        <play-list-item wx:if="{{!daily}}" user="{{true}}" mini="true" itemId="{{playlist.creator.userId}}" coverUrl="{{playlist.creator.avatarUrl}}" titleInfo="{{playlist.creator.nickname}}">
           <follow itemId="{{playlist.creator.userId}}" mini="true" followed="{{playlist.creator.followed}}" wx:if="{{playlist.creator.userId}}"></follow>
         </play-list-item>
         <text class="desc multi-elli" wx:if="{{playlist.description!=null}}">{{playlist.description}}</text>
@@ -17,7 +17,7 @@
     </view>
   </view>
   <!-- 歌单收藏、评论、分享数目 -->
-  <view class="btns">
+  <view class="btns" wx:if="{{!daily}}">
     <view class="btn">
       <van-icon name="like-o" />
       <text>{{playlist.subscribedCount}}</text>
@@ -36,7 +36,7 @@
 <view class="list">
   <view class="container">
     <block wx:for="{{playlist.tracks}}" wx:key="{{item.id}}">
-      <song-item itemId="{{item.id}}" name="{{item.name}}" index="{{index+1}}" artists="{{item.ar}}" album="{{item.al}}" playlistItem="{{true}}"></song-item>
+      <song-item itemId="{{item.id}}" name="{{item.name}}" index="{{index+1}}" artists="{{item.ar}}" album="{{item.al}}" playlistItem="{{true}}" tag="{{item.tag}}"></song-item>
     </block>
   </view>
 </view>

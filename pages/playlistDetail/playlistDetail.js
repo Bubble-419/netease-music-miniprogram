@@ -5,6 +5,8 @@ const app = getApp();
 
 Page({
   data: {
+    // 是否是日推歌单
+    daily: false,
     playlist: {},
   },
 
@@ -12,7 +14,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getPlaylist(options.id);
+    if (options.daily) {
+      this.setData({
+        daily: true
+      })
+      this.getDailyList();
+    } else {
+      this.getPlaylist(options.id);
+    }
   },
 
   /**
@@ -39,4 +48,28 @@ Page({
       }
     }))
   },
+  getDailyList: function () {
+    api.getDailyRec({}).then(res => {
+      if (res.data.code === 200) {
+        // 推荐理由
+        let tracks = res.data.data.dailySongs;
+        for (let tag of res.data.data.recommendReasons) {
+          tracks.find(item => {
+            if (tag.songId === item.id) {
+              item.tag = tag.reason;
+            }
+          })
+        }
+        this.setData({
+          playlist: {
+            tracks,
+            coverImgUrl: res.data.data.dailySongs[0].al.picUrl,
+            name: "每日推荐"
+          },
+        });
+        app.globalData.waitingSongsList = res.data.data.dailySongs;
+
+      }
+    })
+  }
 })
