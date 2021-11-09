@@ -1,3 +1,7 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "song-wrapper": "/components/songWrapper/songWrapper",
+    "song-info-footer": "/components/songInfoFooter/songInfoFooter"
+  },
+  "navigationBarTitleText": "私人FM"
 }

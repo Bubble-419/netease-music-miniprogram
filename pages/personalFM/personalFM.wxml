@@ -1,2 +1,11 @@
-<!--pages/personalFM/personalFM.wxml-->
-<text>pages/personalFM/personalFM.wxml</text>
+<!-- pages/personalFM/personalFM.wxml -->
+<view class="frosted-glass container" style="background:url({{fmSongList[playingIndex].album.picUrl}}) center">
+  <!-- 播放主体区域 -->
+  <view class="play">
+    <song-wrapper flag="fm" sid="{{fmSongList[playingIndex].id}}" picUrl="{{fmSongList[playingIndex].album.picUrl}}" songName="{{fmSongList[playingIndex].name}}" ar="{{fmSongList[playingIndex].artists}}" isPlaying="{{isPlaying}}" songCurr="{{songCurr}}" jumpLyc="{{jumpLyc}}" bind:jumpEnd="onJumpEnd" wx:if="{{fmSongList[playingIndex].id}}"></song-wrapper>
+  </view>
+  <!-- 底部区域 -->
+  <view class="footer">
+    <song-info-footer sid="{{fmSongList[playingIndex].id}}" flag="fm" isPlaying="{{isPlaying}}" songDuration="{{songDuration}}" songCurr="{{songCurr}}" bind:sildeProg="onSildeProg" bind:changeSongProg="onChangeProg" bind:playPressed="play" bind:switchSong="onSwitchSong"></song-info-footer>
+  </view>
+</view>
