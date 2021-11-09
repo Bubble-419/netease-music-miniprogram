@@ -31,10 +31,3 @@
 .play-list-item .title-info .alias {
   color: #666;
 }
-.play-list-item .tags {
-  display: inline-block;
-  margin: 0 20rpx;
-  font-size: 25rpx;
-  color: #666;
-  padding: 0;
-}

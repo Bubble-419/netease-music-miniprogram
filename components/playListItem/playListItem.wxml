@@ -12,7 +12,7 @@
     <text class="extra elli" wx:if="{{extra}}">{{extra}}</text>
     <view>
       <block wx:if="{{tags!=[]}}" wx:for="{{tags}}">
-        <text class="tags round-item">{{item}}</text>
+        <text class="tag round-item">{{item}}</text>
       </block>
     </view>
   </view>
