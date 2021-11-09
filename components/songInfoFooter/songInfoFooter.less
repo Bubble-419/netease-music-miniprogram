@@ -1,0 +1,23 @@
+/* components/songInfoFooter/songInfoFooter.wxss */
+@import "../../assets/less/boxBond.less";
+
+.footer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  .container(@con-padding: 20rpx 35rpx, @bgc: none);
+  height: 100rpx;
+
+  .icons {
+    .flex-box(@flex-dir-prop: row);
+
+    .comment {
+      .van-info {
+        border: none;
+        background-color: @netease-red;
+        right: -10rpx;
+        font-size: @font-small-size;
+      }
+    }
+  }
+}
