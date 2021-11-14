@@ -7,7 +7,9 @@
     "pages/playlistDetail/playlistDetail",
     "pages/login/login",
     "pages/playSong/playSong",
-    "pages/comments/comments"
+    "pages/comments/comments",
+    "pages/rankList/rankList",
+    "pages/playlists/playlists"
   ],
   "window": {
     "navigationBarBackgroundColor": "#DD001B",
@@ -17,7 +19,8 @@
     "backgroundColor": "#fff",
     "color": "#8a8a8a",
     "selectedColor": "#DD001B",
-    "list": [{
+    "list": [
+      {
         "pagePath": "pages/index/index",
         "text": "发现音乐",
         "iconPath": "assets/images/tab-discovery.png",
@@ -37,6 +40,8 @@
       }
     ]
   },
-  "requiredBackgroundModes": ["audio"],
+  "requiredBackgroundModes": [
+    "audio"
+  ],
   "sitemapLocation": "sitemap.json"
 }
