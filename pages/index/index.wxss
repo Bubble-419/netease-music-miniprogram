@@ -56,7 +56,7 @@
   z-index: -1;
 }
 .rec-list {
-  margin: 0;
+  margin: 30rpx 0;
   padding: 10rpx 35rpx;
   border: none;
   background-color: #FFF;

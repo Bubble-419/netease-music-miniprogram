@@ -81,7 +81,6 @@ Page({
         homeIcons[1].url = '/pages/personalFM/personalFM';
         homeIcons[2].url = '../playlists/playlists';
         homeIcons[3].url = '../rankList/rankList';
-        console.log(homeIcons);
         this.setData({
           homeIcons
         })
