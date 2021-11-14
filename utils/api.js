@@ -149,4 +149,8 @@ module.exports = {
   getplayistByTag: function (data) {
     return request("GET", "/top/playlist/highquality", data);
   },
+  // 获取榜单
+  getRankList: function (data) {
+    return request("GET", "/toplist/detail", data);
+  }
 }
