@@ -8,6 +8,8 @@ Page({
     // 是否是日推歌单
     daily: false,
     playlist: {},
+    // loading状态
+    isLoading: true
   },
 
   /**
@@ -20,6 +22,7 @@ Page({
       })
       this.getDailyList();
     } else {
+      console.log(options.id);
       this.getPlaylist(options.id);
     }
   },
@@ -27,6 +30,11 @@ Page({
   /**
    * 页面函数
    */
+  setLoading: function () {
+    this.setData({
+      isLoading: !this.data.isLoading
+    })
+  },
   goToComments: function () {
     wx.navigateTo({
       url: `../comments/comments?itemId=${this.data.playlist.id}&type=2`,
@@ -45,6 +53,7 @@ Page({
           playlist: res.data.playlist
         });
         app.globalData.waitingSongsList = res.data.playlist.trackIds;
+        this.setLoading();
       }
     }))
   },
@@ -68,7 +77,7 @@ Page({
           },
         });
         app.globalData.waitingSongsList = res.data.data.dailySongs;
-
+        this.setLoading();
       }
     })
   }

@@ -1,5 +1,6 @@
 {
   "usingComponents": {
+    "loading": "/components/loading/loading",
     "song-item": "/components/songItem/songItem",
     "van-icon": "@vant/weapp/icon/index",
     "play-list-item": "/components/playListItem/playListItem",
