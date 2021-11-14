@@ -1,0 +1,23 @@
+<!-- components/rankItem/rankItem.wxml -->
+<!-- 两种榜单展示形式, 无歌曲摘要的使用playlistWrapper组件 -->
+<!-- 有歌曲摘要 -->
+<view class="container" bind:tap="goToRanklist" wx:if="{{item.tracks.length!==0}}">
+  <text class="extra">{{item.updateFrequency}}</text>
+  <view class="left">
+    <!-- 标题 -->
+    <text class="title">{{item.name}}</text>
+    <!-- 封面 -->
+    <view class="cover">
+      <image class="cover-img" src="{{item.coverImgUrl}}" mode="aspectFill"></image>
+    </view>
+  </view>
+  <view class="right">
+    <!-- 歌曲摘要 -->
+    <block wx:for="{{item.tracks}}" wx:key="{{item.first}}">
+      <view class="song elli">
+        <text class="first">{{index+1}}.{{item.first}}</text>
+        <text class="second">- {{item.second}}</text>
+      </view>
+    </block>
+  </view>
+</view>

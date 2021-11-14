@@ -1,0 +1,50 @@
+/* components/rankItem/rankItem.wxss */
+.container {
+  margin: 10rpx 0;
+  padding: 20rpx 0;
+  border: none;
+  background-color: #FFF;
+  border-radius: 30rpx;
+  display: flex;
+  flex-flow: nowrap row;
+  justify-content: space-around;
+  align-items: center;
+  width: 700rpx;
+  position: relative;
+}
+.container .extra {
+  position: absolute;
+  top: 0;
+  right: 20rpx;
+}
+.container .left {
+  padding: 0 40rpx;
+}
+.container .left .title {
+  font-size: 35rpx;
+  font-weight: 700;
+}
+.container .left .cover {
+  width: 150rpx;
+  height: 150rpx;
+}
+.container .left .cover image {
+  width: 100%;
+  height: 100%;
+  border-radius: 30rpx;
+}
+.container .right {
+  width: 100rpx;
+  height: 230rpx;
+  flex: 1;
+  display: flex;
+  flex-flow: nowrap column;
+  justify-content: space-around;
+  align-items: stretch;
+}
+.container .right .song {
+  margin: 10rpx 0;
+}
+.container .right .song .second {
+  color: lightgray;
+}

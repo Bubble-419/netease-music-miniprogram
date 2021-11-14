@@ -1,0 +1,19 @@
+<!-- pages/rankList/rankList.wxml -->
+<view class="container">
+  <view class="detail">
+    <block wx:for="{{rankList}}" wx:key="{{item.id}}">
+      <rank-item item="{{item}}"></rank-item>
+    </block>
+  </view>
+</view>
+<view class="show">
+  <block wx:for="{{rankSimpleList}}" wx:key="{{item.id}}">
+    <view class="show-item">
+      <!-- <view class="cover">
+        <image src="{{item.coverImgUrl}}" mode="aspectFit"></image>
+      </view>
+      <text class="name">{{item.name}}</text> -->
+      <playlist-wrapper item="{{item}}"></playlist-wrapper>
+    </view>
+  </block>
+</view>

@@ -1,0 +1,17 @@
+/* pages/rankList/rankList.wxss */
+@import "../../assets/less/boxBond.less";
+
+.container {
+  .flex-box();
+  padding: 0 30rpx;
+}
+
+.show {
+  .container(@con-margin: 30rpx 0 0 0, @con-padding: 20rpx 30rpx);
+  .flex-box(@flex-dir-prop: row, @flex-wrap-prop: wrap, @flex-jc-prop: flex-start);
+
+  .show-item {
+    flex: 1;
+    margin: 0 5rpx;
+  }
+}

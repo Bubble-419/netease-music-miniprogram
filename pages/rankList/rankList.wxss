@@ -1,0 +1,22 @@
+/* pages/rankList/rankList.wxss */
+.container {
+  display: flex;
+  flex-flow: nowrap column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 30rpx;
+}
+.show {
+  margin: 30rpx 0 0 0;
+  padding: 20rpx 30rpx;
+  border: none;
+  background-color: #FFF;
+  display: flex;
+  flex-flow: wrap row;
+  justify-content: flex-start;
+  align-items: center;
+}
+.show .show-item {
+  flex: 1;
+  margin: 0 5rpx;
+}
