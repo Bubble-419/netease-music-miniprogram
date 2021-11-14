@@ -1,5 +1,6 @@
 // components/commentItem/commentItem.js
 const api = require("../../utils/api");
+const util = require("../../utils/util");
 
 Component({
   /**
@@ -50,14 +51,18 @@ Component({
         time: this.data.replyData.time ? this.data.replyData.time : ''
       }).then(res => {
         if (res.data.code === 200) {
+          let replyData = res.data.data;
+          for (let com of replyData.comments) {
+            com.time = util.getReplyTime(com.time);
+          }
           if (this.data.replyData.time) {
             this.setData({
-              ['replyData.comments']: this.data.replyData.comments.concat(res.data.data.comments),
-              ['replyData.time']: res.data.data.time,
+              ['replyData.comments']: this.data.replyData.comments.concat(replyData.comments),
+              ['replyData.time']: replyData.time,
             })
           } else {
             this.setData({
-              replyData: res.data.data
+              replyData
             });
           };
         };

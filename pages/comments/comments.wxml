@@ -3,7 +3,8 @@
 <view class="header">
   <text class="title">评论区({{totalCount}})</text>
   <view class="tabs">
-    <text class="tab {{comReq.sortType===1?'isActive':''}}" data-sort="1" bind:tap="changeTab">推荐</text>
+    <text class="tab {{comReq.sortType===99?'isActive':''}}" data-sort="99" bind:tap="changeTab">推荐</text>
+    <text class="tab {{comReq.sortType===2?'isActive':''}}" data-sort="2" bind:tap="changeTab">热门</text>
     <text class="tab {{comReq.sortType===3?'isActive':''}}" data-sort="3" bind:tap="changeTab">最新</text>
   </view>
 </view>

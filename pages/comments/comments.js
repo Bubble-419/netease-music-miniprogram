@@ -14,10 +14,12 @@ Page({
       // 该资源的类型
       type: 0,
       // 切换评论区，1:按推荐排序,2:按热度排序,3:按时间排序
-      // 可恶的api，1和2得到的结果是一样的
-      sortType: 1,
+      sortType: 99,
       // 分页
       pageNo: 1,
+      pageSize: 20,
+      // 当sortType为3时需要用于分页
+      cursor: ''
     },
     // 总评论数
     totalCount: 0,
@@ -49,6 +51,7 @@ Page({
     this.setData({
       ['comReq.sortType']: parseInt(e.currentTarget.dataset.sort),
       ['comReq.pageNo']: 1,
+      ['comReq.cursor']: '',
       isLoading: true
     });
     this.setCommentInfo({
@@ -60,6 +63,7 @@ Page({
     this.setData({
       isLoading: true,
       ['comReq.pageNo']: this.data.comReq.pageNo + 1,
+      ['comReq.cursor']: this.data.comReq.cursor,
     });
     this.setCommentInfo({
       ...this.data.comReq
@@ -71,7 +75,6 @@ Page({
     api.getComments({
       ...payload
     }).then(res => {
-      console.log(res.data);
       if (res.data.code === 200) {
         let resComments = res.data.data.comments;
         for (let com of resComments) {
@@ -79,6 +82,7 @@ Page({
         };
         this.setData({
           totalCount: res.data.data.totalCount,
+          ['comReq.cursor']: res.data.data.cursor,
           comments: payload.pageNo > 1 ? this.data.comments.concat(resComments) : resComments,
           isLoading: false
         })

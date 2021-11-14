@@ -110,7 +110,6 @@ Component({
         type: 0
       }).then(res => {
         if (res.data.code === 200) {
-          console.log('setCommentInfo2');
           this.setData({
             commentNum: this.getCommentNum(res.data.data.totalCount),
           })
