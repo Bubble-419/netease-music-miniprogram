@@ -5,13 +5,13 @@
   justify-content: space-between;
   padding: 35rpx;
   color: lightgray;
-  font-size: 36rpx;
 }
 .header .tabs .tab {
   padding: 0 15rpx;
 }
 .header .title,
 .header .isActive {
-  font-size: 36rpx;
+  font-size: 35rpx;
   font-weight: 700;
+  font-size: 32rpx;
 }
