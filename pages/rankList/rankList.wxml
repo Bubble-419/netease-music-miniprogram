@@ -9,11 +9,7 @@
 <view class="show">
   <block wx:for="{{rankSimpleList}}" wx:key="{{item.id}}">
     <view class="show-item">
-      <!-- <view class="cover">
-        <image src="{{item.coverImgUrl}}" mode="aspectFit"></image>
-      </view>
-      <text class="name">{{item.name}}</text> -->
-      <playlist-wrapper item="{{item}}"></playlist-wrapper>
+      <playlist-wrapper itemId="{{item.id}}" picUrl="{{item.coverImgUrl}}" name="{{item.name}}" count="{{item.playCount}}"></playlist-wrapper>
     </view>
   </block>
 </view>
