@@ -21,6 +21,10 @@ Component({
       type: Object,
       value: {},
     },
+    border: {
+      type: Boolean,
+      value: true,
+    },
     playlistItem: {
       type: Boolean,
       value: false,

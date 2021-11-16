@@ -1,8 +1,8 @@
-<view class="song-item {{playlistItem?'':'border'}}" bind:tap="playSong">
+<view class="song-item {{border?'border':''}}" bind:tap="playSong">
   <!-- icon -->
   <view>
     <van-icon name="play-circle-o" size="40rpx" class="right-icon" bind:click="playSong" />
-    <van-icon name="more-o" size="40rpx" class="right-icon" />
+    <!-- <van-icon name="more-o" size="40rpx" class="right-icon" /> -->
   </view>
   <!-- 歌曲信息 -->
   <view class="song-info">
@@ -22,6 +22,7 @@
       <text class="elli" wx:if="{{album.name!=''}}">- {{album.name}}</text>
     </view>
   </view>
+  <slot></slot>
   <!-- 歌曲序号 -->
   <text class="index" wx:if="{{playlistItem}}">{{index}}</text>
 </view>

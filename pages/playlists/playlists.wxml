@@ -9,7 +9,8 @@
           <view class="list-box">
             <block wx:for="{{hotplayList}}" wx:key="item.id">
               <view class="list-item">
-                <playlist-wrapper item="{{item}}"></playlist-wrapper>
+                <!-- <playlist-wrapper item="{{item}}"></playlist-wrapper> -->
+                <playlist-wrapper itemId="{{item.id}}" picUrl="{{item.coverImgUrl}}" name="{{item.name}}" count="{{item.playCount}}"></playlist-wrapper>
               </view>
             </block>
           </view>
@@ -19,7 +20,8 @@
           <view class="list-box">
             <block wx:for="{{dailyPlaylist}}" wx:key="item.id">
               <view class="list-item">
-                <playlist-wrapper item="{{item}}"></playlist-wrapper>
+                <!-- <playlist-wrapper item="{{item}}"></playlist-wrapper> -->
+                <playlist-wrapper itemId="{{item.id}}" picUrl="{{item.picUrl}}" name="{{item.name}}" count="{{item.playcount}}"></playlist-wrapper>
               </view>
             </block>
           </view>
@@ -30,7 +32,8 @@
         <view class="list-box">
           <block wx:for="{{tagPlaylist}}" wx:key="item.id">
             <view class="list-item">
-              <playlist-wrapper item="{{item}}"></playlist-wrapper>
+              <!-- <playlist-wrapper item="{{item}}"></playlist-wrapper> -->
+              <playlist-wrapper itemId="{{item.id}}" picUrl="{{item.coverImgUrl}}" name="{{item.name}}" count="{{item.playCount}}"></playlist-wrapper>
             </view>
           </block>
         </view>

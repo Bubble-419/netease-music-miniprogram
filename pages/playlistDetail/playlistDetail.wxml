@@ -37,7 +37,7 @@
   <view class="list" hidden="{{isLoading}}">
     <view class="container">
       <block wx:for="{{playlist.tracks}}" wx:key="{{item.id}}">
-        <song-item itemId="{{item.id}}" name="{{item.name}}" index="{{index+1}}" artists="{{item.ar}}" album="{{item.al}}" playlistItem="{{true}}" tag="{{item.tag}}"></song-item>
+        <song-item itemId="{{item.id}}" name="{{item.name}}" index="{{index+1}}" artists="{{item.ar}}" album="{{item.al}}"  playlistItem="{{true}}" border="{{false}}" tag="{{item.tag}}"></song-item>
       </block>
     </view>
   </view>
