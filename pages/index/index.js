@@ -9,7 +9,9 @@ Page({
     // 圆形入口列表
     homeIcons: [],
     // 首页推荐歌单
-    playList: [],
+    indexPlaylists: [],
+    // 首页歌曲列表
+    indexSongList: [],
   },
 
   /**
@@ -19,9 +21,8 @@ Page({
   // 监听页面加载
   onLoad: function (options) {
     this.setSearchDefault();
-    this.setBanners();
     this.setHomeicons();
-    this.setPlayList();
+    this.setBlocks();
   },
 
   /**
@@ -61,12 +62,24 @@ Page({
       }
     })
   },
-  // 获取轮播图
-  setBanners: function () {
-    api.getBanner({}).then(res => {
+  // 获取首页数据
+  setBlocks: function () {
+    api.getIndexBlocks({}).then(res => {
       if (res.data.code === 200) {
+        let indexPlaylists = res.data.data.blocks.filter(item => {
+          return item.showType === "HOMEPAGE_SLIDE_PLAYLIST"
+        })
+        indexPlaylists.map(item => {
+          item.action = "goToPlaylists"
+        });
         this.setData({
-          banners: res.data.banners,
+          banners: res.data.data.blocks.find(item => {
+            return item.showType === "BANNER";
+          }).extInfo.banners,
+          indexPlaylists,
+          indexSongList: res.data.data.blocks.filter(item => {
+            return item.showType === "HOMEPAGE_SLIDE_SONGLIST_ALIGN"
+          }),
         })
       }
     })
@@ -87,16 +100,10 @@ Page({
       }
     })
   },
-  // 获取首页推荐歌单
-  setPlayList: function () {
-    api.getHomePlaylist({
-      limit: 6
-    }).then(res => {
-      if (res.data.code === 200) {
-        this.setData({
-          playList: res.data.result,
-        })
-      }
-    })
-  }
+  // 跳转去歌单广场
+  goToPlaylists: function () {
+    wx.navigateTo({
+      url: '../playlists/playlists',
+    });
+  },
 })

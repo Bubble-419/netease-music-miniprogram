@@ -51,9 +51,9 @@ module.exports = {
   searchDefault: (data) => {
     return request("GET", "/search/default", data);
   },
-  // 轮播图
-  getBanner: (data) => {
-    return request("GET", "/banner", data);
+  // 首页数据
+  getIndexBlocks: (data) => {
+    return request("GET", "/homepage/block/page", data);
   },
   // 圆形入口列表
   getHomeicons: (data) => {

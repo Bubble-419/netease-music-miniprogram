@@ -12,7 +12,7 @@
     <block wx:for="{{banners}}" wx:key="{{item.targetId}}">
       <swiper-item item-id="{{item.targetId}}">
         <view class="banner-item">
-          <image src="{{item.imageUrl}}" lazy-load="true" mode="widthFix"></image>
+          <image src="{{item.pic}}" lazy-load="true" mode="widthFix"></image>
         </view>
       </swiper-item>
     </block>
@@ -29,20 +29,50 @@
   <!-- 圆形入口列表结束 -->
 </view>
 <!-- header区域结束 -->
-<!-- 推荐歌单 -->
-<view class="rec-list">
-  <!-- 推荐歌单标题+更多按钮 -->
-  <view class="rec-header">
-    <text>推荐歌单</text>
-    <van-button type="default" round hairline size="mini">更多</van-button>
+<!-- 首页歌曲列表 -->
+<block wx:for="{{indexSongList}}" wx:key="{{item.blockCode}}">
+  <view class="rec-list">
+    <!-- 歌曲列表标题 -->
+    <view class="rec-header">
+      <text>{{item.uiElement.subTitle.title}}</text>
+    </view>
+    <!-- 歌曲列表 -->
+    <scroll-view class="songlist" scroll-x="true">
+      <block wx:for="{{item.creatives}}" wx:key="*this">
+        <view class="songlist-item">
+          <block wx:for="{{item.resources}}" wx:key="{{item.resourceId}}">
+            <view class="item-wrapper">
+              <song-item itemId="{{item.resourceId}}" name="{{item.uiElement.mainTitle.title}}" artists="{{item.resourceExtInfo.artists}}" tag="{{item.uiElement.subTitle.title}}" album="{{item.resourceExtInfo.song.al}}" border="{{false}}">
+                <!-- 封面slot -->
+                <view class="song-cover">
+                  <image src="{{item.resourceExtInfo.song.al.picUrl}}" mode="aspectFit"></image>
+                </view>
+              </song-item>
+            </view>
+          </block>
+        </view>
+      </block>
+    </scroll-view>
   </view>
-  <!-- 歌单列表 -->
-  <scroll-view class="list" scroll-x="true">
-    <block wx:for="{{playList}}" wx:key="item.id">
-      <view class="list-item">
-        <playlist-wrapper item="{{item}}"></playlist-wrapper>
-      </view>
-    </block>
-  </scroll-view>
-</view>
-<!-- 推荐歌单结束 -->
+</block>
+<!-- 首页歌单 -->
+<block wx:for="{{indexPlaylists}}" wx:key="{{item.blockCode}}">
+  <view class="rec-list">
+    <!-- 推荐歌单标题+更多按钮 -->
+    <view class="rec-header">
+      <text>{{item.uiElement.subTitle.title}}</text>
+      <van-button type="default" round hairline size="mini" bind:tap="{{item.action}}">
+        {{item.uiElement.button.text}}
+      </van-button>
+    </view>
+    <!-- 歌单列表 -->
+    <scroll-view class="list" scroll-x="true">
+      <block wx:for="{{item.creatives}}" wx:key="{{item.resourceId}}">
+        <view class="list-item" wx:if="{{item.creativeType==='list'}}">
+          <playlist-wrapper itemId="{{item.creativeId}}" picUrl="{{item.uiElement.image.imageUrl}}" name="{{item.uiElement.mainTitle.title}}" count="{{item.resources.resourceExtInfo.playCount}}"></playlist-wrapper>
+        </view>
+      </block>
+    </scroll-view>
+  </view>
+</block>
+<!-- 首页歌单结束 -->
