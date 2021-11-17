@@ -10,7 +10,11 @@ Page({
     phone: "",
     captcha: {
       val: "",
-      sentStatus: false,
+      sentStatus: {
+        status: false,
+        desc: "发送"
+      },
+      countdown: 60
     },
   },
 
@@ -46,15 +50,26 @@ Page({
       phone: this.data.phone
     }).then(res => {
       if (res.data.code === 200 && res.data.data === true) {
-        this.setData({
-          ['captcha.sentStatus']: true
-        })
+        this.setCountdown();
       } else {
         Dialog.alert({
           message: res.data.message,
         })
       }
     })
+  },
+  // 设置验证码倒计时
+  setCountdown: function () {
+    setInterval(() => {
+      console.log(this.data.captcha.sentStatus);
+      this.setData({
+        ['captcha.countdown']: this.data.captcha.countdown - 1,
+        ['captcha.sentStatus']: {
+          status: this.data.captcha.countdown > 0,
+          desc: this.data.captcha.sentStatus.status ? this.data.captcha.countdown + "秒" : "发送"
+        },
+      });
+    }, 1000);
   },
   // 手机+验证码登录
   login: function () {
