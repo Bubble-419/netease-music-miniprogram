@@ -1,3 +1,8 @@
 <view class="loading" hidden="{{!isLoading}}">
+  <i></i>
+  <i></i>
+  <i></i>
+  <i></i>
+  <i></i>
   <text>Loading...</text>
 </view>
