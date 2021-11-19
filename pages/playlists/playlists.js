@@ -93,7 +93,6 @@ Page({
   setTagPlaylist: function (data) {
     api.getplayistByTag(data).then(res => {
       if (res.data.code === 200) {
-        console.log(res.data.more);
         this.setData({
           offset: res.data.lasttime,
           tagPlaylist: this.data.tagPlaylist.concat(res.data.playlists),

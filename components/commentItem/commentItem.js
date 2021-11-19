@@ -37,7 +37,6 @@ Component({
   methods: {
     // 展示回复
     changeShowRepley: function () {
-      console.log('changeShow');
       this.setData({
         showReply: !this.data.showReply
       });
@@ -52,9 +51,9 @@ Component({
       }).then(res => {
         if (res.data.code === 200) {
           let replyData = res.data.data;
-          for (let com of replyData.comments) {
+          replyData.comments.map(com => {
             com.time = util.getReplyTime(com.time);
-          }
+          })
           if (this.data.replyData.time) {
             this.setData({
               ['replyData.comments']: this.data.replyData.comments.concat(replyData.comments),

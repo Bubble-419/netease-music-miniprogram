@@ -43,9 +43,6 @@ Page({
     wx.getStorage({
       key: 'user',
       success: (res) => {
-        // this.setData({
-        //   uid: res.data.id,
-        // });
         this.loginStatus();
         this.setPlayList();
       },

@@ -187,9 +187,9 @@ Page({
     }).then(res => {
       if (res.data.code === 200) {
         let al = res.data.result.album;
-        for (let a of al.albums) {
+        al.map(a => {
           a.publishTime = util.getPublishTime(a.publishTime);
-        }
+        })
         this.setData({
           song: res.data.result.song,
           playList: res.data.result.playList,
@@ -232,9 +232,9 @@ Page({
             break;
           case "10":
             let al = res.data.result.albums;
-            for (let a of al) {
+            al.map(a => {
               a.publishTime = util.getPublishTime(a.publishTime);
-            }
+            })
             this.setData({
               allAlbums: this.data.allAlbums.concat(al),
             });

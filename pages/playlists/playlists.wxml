@@ -9,7 +9,6 @@
           <view class="list-box">
             <block wx:for="{{hotplayList}}" wx:key="item.id">
               <view class="list-item">
-                <!-- <playlist-wrapper item="{{item}}"></playlist-wrapper> -->
                 <playlist-wrapper itemId="{{item.id}}" picUrl="{{item.coverImgUrl}}" name="{{item.name}}" count="{{item.playCount}}"></playlist-wrapper>
               </view>
             </block>
@@ -20,7 +19,6 @@
           <view class="list-box">
             <block wx:for="{{dailyPlaylist}}" wx:key="item.id">
               <view class="list-item">
-                <!-- <playlist-wrapper item="{{item}}"></playlist-wrapper> -->
                 <playlist-wrapper itemId="{{item.id}}" picUrl="{{item.picUrl}}" name="{{item.name}}" count="{{item.playcount}}"></playlist-wrapper>
               </view>
             </block>
@@ -32,13 +30,12 @@
         <view class="list-box">
           <block wx:for="{{tagPlaylist}}" wx:key="item.id">
             <view class="list-item">
-              <!-- <playlist-wrapper item="{{item}}"></playlist-wrapper> -->
               <playlist-wrapper itemId="{{item.id}}" picUrl="{{item.coverImgUrl}}" name="{{item.name}}" count="{{item.playCount}}"></playlist-wrapper>
             </view>
           </block>
         </view>
       </view>
-      <loading isLoading="{{isLoading}}"></loading>
+      <loading isLoading="{{true}}"></loading>
       <view class="more" wx:if="{{!hasMore&&!isLoading}}">暂时没有更多数据了</view>
     </van-tab>
   </block>

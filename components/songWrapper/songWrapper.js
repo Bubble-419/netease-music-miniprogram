@@ -80,11 +80,6 @@ Component({
       };
     },
   },
-  lifetimes: {
-    // attached: function () {
-    //   this.setLyrics(this.properties.sid);
-    // }
-  },
 
   /**
    * 组件的方法列表
