@@ -19,8 +19,18 @@ Page({
     if (options.daily) {
       this.setData({
         daily: true
-      })
-      this.getDailyList();
+      });
+      wx.getStorage({
+        key: 'user',
+        success: (res) => {
+          this.getDailyList();
+        },
+        fail: () => {
+          wx.redirectTo({
+            url: '../login/login',
+          });
+        }
+      });
     } else {
       console.log(options.id);
       this.getPlaylist(options.id);

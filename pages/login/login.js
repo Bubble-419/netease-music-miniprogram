@@ -61,9 +61,8 @@ Page({
   // 设置验证码倒计时
   setCountdown: function () {
     setInterval(() => {
-      console.log(this.data.captcha.sentStatus);
       this.setData({
-        ['captcha.countdown']: this.data.captcha.countdown - 1,
+        ['captcha.countdown']: this.data.captcha.sentStatus.status ? this.data.captcha.countdown - 1 : 60,
         ['captcha.sentStatus']: {
           status: this.data.captcha.countdown > 0,
           desc: this.data.captcha.sentStatus.status ? this.data.captcha.countdown + "秒" : "发送"

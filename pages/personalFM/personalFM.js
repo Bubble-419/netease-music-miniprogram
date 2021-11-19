@@ -29,7 +29,18 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setFM();
+    wx.getStorage({
+      key: 'user',
+      success: (res) => {
+        this.setFM();
+        this.setPlayList();
+      },
+      fail: () => {
+        wx.redirectTo({
+          url: '../login/login',
+        });
+      }
+    });
   },
 
   /**

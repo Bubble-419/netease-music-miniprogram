@@ -66,17 +66,21 @@ Page({
   setBlocks: function () {
     api.getIndexBlocks({}).then(res => {
       if (res.data.code === 200) {
+        // 筛选出歌单
         let indexPlaylists = res.data.data.blocks.filter(item => {
           return item.showType === "HOMEPAGE_SLIDE_PLAYLIST"
-        })
+        });
+        // 修改action
         indexPlaylists.map(item => {
           item.action = "goToPlaylists"
         });
         this.setData({
+          // 筛选banner
           banners: res.data.data.blocks.find(item => {
             return item.showType === "BANNER";
           }).extInfo.banners,
           indexPlaylists,
+          // 筛选歌曲列表
           indexSongList: res.data.data.blocks.filter(item => {
             return item.showType === "HOMEPAGE_SLIDE_SONGLIST_ALIGN"
           }),

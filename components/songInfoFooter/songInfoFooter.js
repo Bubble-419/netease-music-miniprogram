@@ -140,7 +140,7 @@ Component({
         this.clearAnimation('.like');
       });
       api.like({
-        id: this.data.song.id,
+        id: this.data.sid,
         like: this.data.like,
       }).then(res => {
         if (res.data.code >= 300) {

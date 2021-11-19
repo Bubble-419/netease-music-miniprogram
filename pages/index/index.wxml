@@ -69,7 +69,7 @@
     <scroll-view class="list" scroll-x="true">
       <block wx:for="{{item.creatives}}" wx:key="{{item.resourceId}}">
         <view class="list-item" wx:if="{{item.creativeType==='list'}}">
-          <playlist-wrapper itemId="{{item.creativeId}}" picUrl="{{item.uiElement.image.imageUrl}}" name="{{item.uiElement.mainTitle.title}}" count="{{item.resources.resourceExtInfo.playCount}}"></playlist-wrapper>
+          <playlist-wrapper itemId="{{item.creativeId}}" picUrl="{{item.uiElement.image.imageUrl}}" name="{{item.uiElement.mainTitle.title}}" count="{{item.resources[0].resourceExtInfo.playCount}}"></playlist-wrapper>
         </view>
       </block>
     </scroll-view>
